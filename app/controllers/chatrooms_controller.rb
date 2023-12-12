@@ -2,6 +2,7 @@ class ChatroomsController < ApplicationController
 
   def index
     @message = Message.all
+    @chatrooms = Chatroom.where("helper_id = ? OR needer_id = ?", current_user.id, current_user.id)
   end
 
   def show
