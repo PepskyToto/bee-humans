@@ -1,2 +1,2 @@
-class CompetencesController < ApplicationController
+class SkillsController < ApplicationController
 end

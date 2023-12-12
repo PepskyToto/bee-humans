@@ -10,24 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_111813) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_133424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chatrooms", force: :cascade do |t|
     t.bigint "helper_id"
-    t.bigint "requete_id"
+    t.bigint "needer_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["helper_id"], name: "index_chatrooms_on_helper_id"
-    t.index ["requete_id"], name: "index_chatrooms_on_requete_id"
-  end
-
-  create_table "competences", force: :cascade do |t|
-    t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["needer_id"], name: "index_chatrooms_on_needer_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -57,11 +51,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_111813) do
     t.integer "rating"
     t.text "description"
     t.bigint "reviewer_id"
-    t.bigint "user_id"
+    t.bigint "reviewee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["reviewee_id"], name: "index_reviews_on_reviewee_id"
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,21 +82,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_111813) do
 
   create_table "users_skills", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "competence_id", null: false
+    t.bigint "skill_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["competence_id"], name: "index_users_skills_on_competence_id"
+    t.index ["skill_id"], name: "index_users_skills_on_skill_id"
     t.index ["user_id"], name: "index_users_skills_on_user_id"
   end
 
   add_foreign_key "chatrooms", "users", column: "helper_id"
-  add_foreign_key "chatrooms", "users", column: "requete_id"
+  add_foreign_key "chatrooms", "users", column: "needer_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "requests", "competences"
+  add_foreign_key "requests", "skills", column: "competence_id"
   add_foreign_key "requests", "users"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "users", column: "reviewee_id"
   add_foreign_key "reviews", "users", column: "reviewer_id"
-  add_foreign_key "users_skills", "competences"
+  add_foreign_key "users_skills", "skills"
   add_foreign_key "users_skills", "users"
 end
