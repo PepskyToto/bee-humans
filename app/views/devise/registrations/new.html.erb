@@ -7,14 +7,24 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email" } %>
+
+    <%= f.input :username,
+                required: true,
+                input_html: { autocomplete: "username" } %>
+
+    <%= f.input :address,
+                required: true,
+                input_html: { autocomplete: "address" } %>
+
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} caractères au minimum" if @minimum_password_length),
-                input_html: { autocomplete: "nouveau mot de passe" } %>
+                input_html: { autocomplete: "new-password" } %>
+
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "nouveau mot de passe" } %>
+                input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">
