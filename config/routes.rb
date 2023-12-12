@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :skills
 
-  resources :requetes do
+  resources :requests do
     resources :chatrooms , only: [:show]
   end
 

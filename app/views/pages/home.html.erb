@@ -4,3 +4,6 @@
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+<%= link_to "Needer", new_request_path %>
+<%= link_to "Helper", requests_path %>
