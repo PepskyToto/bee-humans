@@ -1,0 +1,41 @@
+<%# #Mettre la pdp de aurore en image de profil %>
+
+
+<div class="user-profile">
+  <h1>Profil de <%= @user.username %></h1>
+
+  <% if @user.online %>
+    <span class="status online">En ligne</span>
+  <% else %>
+    <span class="status offline">Hors ligne</span>
+  <% endif %>
+
+  <div class="basic-info">
+    <p><strong>Email :</strong> <%= @user.email %></p>
+    <p><strong>Adresse :</strong> <%= @user.address %></p>
+    <p><strong>Description :</strong> <%= @user.description %></p>
+    <p><strong>Pollen :</strong> <%= @user.pollen %></p>
+    <p><strong>Note Moyenne :</strong> <%= @user.average_rating || 'Non évalué' %></p>
+  </div>
+
+  <%# <% if @user.latitude && @user.longitude %>
+    <%# <div id="user-location-map"></div>
+  <% end %>
+
+  <div class="skills">
+    <h2>Compétences</h2>
+    <% @user.skills.each do |skill| %>
+      <div class="skill"><%= skill.category %></div>
+    <% end %>
+  </div>
+
+  <div class="reviews">
+    <h2>Avis</h2>
+    <% @user.reviews.each do |review| %>
+      <div class="review">
+        <p><strong>Note :</strong> <%= review.rating %></p>
+        <p><strong>Description :</strong> <%= review.description %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
