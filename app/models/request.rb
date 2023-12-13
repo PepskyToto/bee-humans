@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
-  belongs_to :users
-  belongs_to :skills
+  belongs_to :user
+  belongs_to :skill
   has_one :chatroom
 end
