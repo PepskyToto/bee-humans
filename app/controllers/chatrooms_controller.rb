@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show, :new, :create]
 
   def index
     @message = Message.all
@@ -7,6 +8,7 @@ class ChatroomsController < ApplicationController
 
   def show
     @chatroom = Chatroom.find(params[:id])
+    redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
   end
 
@@ -28,5 +30,9 @@ class ChatroomsController < ApplicationController
 
   def chatroom_params
     params.require(:chatroom).permit(:request_id)
+  end
+
+  def authenticate_user!
+
   end
 end
