@@ -6,3 +6,4 @@ class ChangeCompetenceToSkillInRequests < ActiveRecord::Migration[7.1]
     add_foreign_key :requests, :skills, column: :skill_id
   end
 end
+#commentaire
