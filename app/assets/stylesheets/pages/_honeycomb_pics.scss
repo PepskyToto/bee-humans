@@ -8,7 +8,16 @@
   background-size: cover;
 }
 
-.body {
-  background-color: $light-beige;
-  color: red !important;
+
+.mapboxgl-popup {
+  max-width: 100px;
+  color: $beige ; /* Couleur de fond du popup */
 }
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  overflow: scroll; /* Empêche le texte de déborder du popup */
+  text-overflow: ellipsis; /* Ajoute des points de suspension (...) pour le texte qui dépasse */
+}
+
+

@@ -1,6 +1,6 @@
 .avatar {
-  width: 10vh;
-  height:10vh; /* Taille de l'avatar */
+  width: 8vh;
+  height:8vh; /* Taille de l'avatar */
   clip-path: polygon(
     50% 0%,   /* Sommet supérieur */
     100% 25%, /* Sommet supérieur droit */
@@ -25,7 +25,7 @@
 #star {
   position: absolute; /* Position the span element absolutely */
   top: -0.8vh; /* Adjust the vertical position as needed */
-  left: 75%; /* Center it horizontally */
+  left: 60%; /* Center it horizontally */
   z-index: 1;
   width: 9vh;
   height: 9vh;
@@ -35,7 +35,7 @@
   background-image: url("https://res.cloudinary.com/durjq68ed/image/upload/v1702459944/star_c7r4fj.png");
   background-size: 7vh;
   background-repeat: no-repeat;
-  padding: 10% 7.8%;
+  padding: 13.5% 13%;
 
 }
 
@@ -43,9 +43,9 @@
 .user-points {
   position: absolute; /* Position the span element absolutely */
   top: 2px; /* Adjust the vertical position as needed */
-  right: 50%; /* Center it horizontally */
-  background-color: $orange; /* Add background color if needed */
-  padding: 2% 4.5% 4%;
+  right: 70%; /* Center it horizontally */
+  background-color: $aubergine; /* Add background color if needed */
+  padding: 2% 7.5% 10%;
   clip-path: polygon(
     50% 0%,   /* Sommet supérieur */
     100% 25%, /* Sommet supérieur droit */
