@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_170245) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_13_104159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,13 +39,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_170245) do
   create_table "requests", force: :cascade do |t|
     t.text "description"
     t.string "title"
-    t.bigint "competence_id", null: false
+    t.bigint "skill_id", null: false
     t.bigint "user_id", null: false
     t.date "date"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["competence_id"], name: "index_requests_on_competence_id"
+    t.index ["skill_id"], name: "index_requests_on_skill_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_170245) do
   add_foreign_key "chatrooms", "users", column: "needer_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "requests", "skills", column: "competence_id"
+  add_foreign_key "requests", "skills"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "users", column: "reviewee_id"
   add_foreign_key "reviews", "users", column: "reviewer_id"

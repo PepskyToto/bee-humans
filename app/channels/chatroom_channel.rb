@@ -5,6 +5,6 @@ class ChatroomChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    current_user.update(online: false) if current_user
+    # current_user.update(online: false) if current_user
   end
 end
