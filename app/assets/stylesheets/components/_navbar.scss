@@ -1,12 +1,72 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+
+/* Styles de base pour tous les écrans */
+.navbar {
+  background-color: $beige;/* Couleur de fond de la navbar */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-brand .logo {
+  height: 10vh; /* Taille du logo */
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.humans {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+  color: $aubergine;
+  font-weight: 800;
+  font-size: 7vh;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10vh;
+}
+
+.btn-login {
+  color: $orange;
+}
+
+
+.dropdown-menu {
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: $beige;
+  color: $orange;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu:hover {
+  color: $aubergine;
+}
+
+.honeycomb-mail {
+  width: 10vh;
+  align-items: center;
+}
+
+.dropdown-item {
+  color: $orange;
+}
+
+@media (max-width: 375px) {
+  .navbar {
+    align-items: center;
+  }
+  .humans {
+    font-size: 12px;
+  }
+}
+
+/* Styles pour les écrans de type laptop */
+@media (min-width: 768px) {
+  .user-details {
+    display: block; /* Affiche les détails de l'utilisateur sur les grands écrans */
+  }
+  .navbar {
+    width: 100%;
+  }
 }

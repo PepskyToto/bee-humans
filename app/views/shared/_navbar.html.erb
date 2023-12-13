@@ -1,7 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702389976/bee_humans_logo_hccovk.png", class: "logo" %>
+    <% end %>
+    <div>
+      <h1 class="humans">Humans</h1>
+    </div>
+    <div class="d-flex justify-content-end">
+      <% if user_signed_in? %>
+        <%= link_to "#", class: "mail-icon" do %>
+          <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702395857/messagerie-vide_umvmjq.png", class: "honeycomb-mail" %>
+        <% end %>
+
+
+      <div class="profile-info">
+          <div class="user-details">
+            <span class="user-points">10</span>
+            <div class="ratings">
+              <span class="user-rating" id="star">4.5</span>
+            </div>
+
+          </div>
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= image_tag "https://res-console.cloudinary.com/durjq68ed/thumbnails/v1/image/upload/v1701441860/c2FtcGxlcy9zbWlsZQ==/template_primary/Y19maWxsLGFyXzE6MQ==", class: "avatar" %>
+          </a>
+
+
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "Profile", "#", class: "dropdown-item" %>
+          <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+        </div>
+      </div>
+
+
+
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "btn btn-login nav-link" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+
+
+<!--
+
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702389976/bee_humans_logo_hccovk.png" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,3 +84,34 @@
     </div>
   </div>
 </div>
+
+
+
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve"
+
+
+
+<%# <div class="avatar-container">
+   SVG pour la forme hexagonale
+  <svg version="1.1" id="Calque_1" >
+<path id="clipPath" class="st0" d="M50,3.3c-1.6,0-3.2,0.4-4.6,1.2L14.4,22.4c-2.9,1.7-4.6,4.7-4.6,8v35.7c0,3.3,1.8,6.4,4.6,8
+	l30.9,17.9c1.4,0.8,3,1.2,4.6,1.2s3.2-0.4,4.6-1.2l30.9-17.9c2.9-1.7,4.6-4.7,4.6-8V30.5c0-3.3-1.8-6.4-4.6-8L54.6,4.6
+	C53.2,3.7,51.6,3.3,50,3.3L50,3.3z"/>
+  </svg>
+
+  Image de profil
+  <%= image_tag "https://res-console.cloudinary.com/durjq68ed/thumbnails/v1/image/upload/v1701441863/c2FtcGxlcy9tYW4tcG9ydHJhaXQ=/template_primary/Y19maWxsLGFyXzE6MSxnX2F1dG8=", class: "profile-image", alt: "Profile Image" %>
+<%# </div> %>
+
+
+<%#
+<div class="hexagone">
+  <div class="hexagonemain">
+    <div class="hexagonemainbefore">
+      <%= image_tag "https://res-console.cloudinary.com/durjq68ed/thumbnails/v1/image/upload/v1701441863/c2FtcGxlcy9tYW4tcG9ydHJhaXQ=/template_primary/Y19maWxsLGFyXzE6MSxnX2F1dG8=", class: "profile-image", alt: "Profile Image" %>
+    <%# </div>
+  </div>
+</div> %>
+
+-->
