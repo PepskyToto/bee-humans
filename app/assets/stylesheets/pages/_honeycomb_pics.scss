@@ -8,6 +8,7 @@
   background-size: cover;
 }
 
+
 .mapboxgl-popup {
   max-width: 100px;
   color: $beige ; /* Couleur de fond du popup */
@@ -18,4 +19,5 @@
   overflow: scroll; /* Empêche le texte de déborder du popup */
   text-overflow: ellipsis; /* Ajoute des points de suspension (...) pour le texte qui dépasse */
 }
+
 
