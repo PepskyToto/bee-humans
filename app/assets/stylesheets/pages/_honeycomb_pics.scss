@@ -8,9 +8,17 @@
   background-size: cover;
 }
 
+.maps-size{
+  width: 100%; 
+  height: 87vh;}
+
 .mapboxgl-popup {
   max-width: 100px;
   color: $beige ; /* Couleur de fond du popup */
+}
+
+.mapboxgl-ctrl-attrib-inner{
+  display: none;
 }
 .mapboxgl-popup-content {
   text-align: center;
