@@ -1,0 +1,11 @@
+
+<div class="chatrooms-index">
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom_path(chatroom) do %>
+      <div class="chatroom">
+
+        <p>Chatroom: <%= chatroom.id %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
