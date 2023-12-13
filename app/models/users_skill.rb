@@ -1,4 +1,4 @@
 class UsersSkill < ApplicationRecord
   belongs_to :user
-  belongs_to :competence
+  belongs_to :skill
 end
