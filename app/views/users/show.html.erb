@@ -8,7 +8,7 @@
     <span class="status online">En ligne</span>
   <% else %>
     <span class="status offline">Hors ligne</span>
-  <% endif %>
+  <% end%>
 
   <div class="basic-info">
     <p><strong>Email :</strong> <%= @user.email %></p>
@@ -29,13 +29,15 @@
     <% end %>
   </div>
 
-  <div class="reviews">
+
+
+  <%# <div class="reviews">
     <h2>Avis</h2>
     <% @user.reviews.each do |review| %>
-      <div class="review">
+      <%# <div class="review">
         <p><strong>Note :</strong> <%= review.rating %></p>
-        <p><strong>Description :</strong> <%= review.description %></p>
-      </div>
+        <%# <p><strong>Description :</strong> <%= review.description %></p>
+      <%# </div>
     <% end %>
-  </div>
-</div>
+  <%# </div>
+</div> %>
