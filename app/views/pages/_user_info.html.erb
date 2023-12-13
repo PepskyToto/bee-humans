@@ -1,0 +1,9 @@
+<h2><%= user.username %></h2>
+<% user.skills.each do |skill| %>
+<p><%= skill.category %></p>
+<% end %>
+<% if user.requests.size == 0 %>
+<p>Cet utilisateur n'a pas publié d'annonces</p>
+<% else %>
+<p> Cette utilisateur à besoin d'aide en <%= Skill.find(user.requests.first.skill_id).category %> </p>
+<% end %>
