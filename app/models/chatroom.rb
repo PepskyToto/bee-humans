@@ -1,6 +1,7 @@
 class Chatroom < ApplicationRecord
-  belongs_to :user
-  belongs_to :request
-  has_many :messages, dependent: :destroy
 
+  has_many :messages
+  belongs_to :helper, class_name: 'User'
+  belongs_to :needer, class_name: 'User'
+  belongs_to :request
 end

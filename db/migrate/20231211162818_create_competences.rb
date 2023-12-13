@@ -1,6 +1,6 @@
-class CreateSkills < ActiveRecord::Migration[7.1]
+class CreateCompetences < ActiveRecord::Migration[7.1]
   def change
-    create_table :skills do |t|
+    create_table :competences do |t|
       t.string :category
 
       t.timestamps
