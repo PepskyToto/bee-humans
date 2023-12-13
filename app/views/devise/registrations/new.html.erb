@@ -21,7 +21,15 @@
                 required: true,
                 input_html: { autocomplete: "description" } %>
 
-
+  <%= f.simple_fields_for :request, @request do |request_form| %>
+      <% @skills = Skill.all %>
+      <% @skills.each do |skill| %>
+        <%= request_form.collection_check_boxes :skill, [skill], :id, :to_s do |cb| %>
+          <%= cb.check_box %>
+          <%= cb.label { skill.category } %>
+        <% end %>
+      <% end %>
+    <% end %>
 
     <%= f.input :password,
                 required: true,
