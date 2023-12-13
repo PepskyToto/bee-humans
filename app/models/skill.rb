@@ -3,3 +3,4 @@ class Skill < ApplicationRecord
   has_many :users , through: :users_skills
   has_many :requests
 end
+#commentaire
