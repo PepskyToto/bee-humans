@@ -1,8 +1,5 @@
-class ChangeCompetenceToSkillInRequests < ActiveRecord::Migration[7.1]
-  def change
-    remove_column :requests, :competence_id, :bigint
-    add_column :requests, :skill_id, :bigint
-    add_index :requests, :skill_id
-    add_foreign_key :requests, :skills, column: :skill_id
-  end
+class Skill < ApplicationRecord
+  has_many :users_skills
+  has_many :users , through: :users_skills
+  has_many :requests
 end

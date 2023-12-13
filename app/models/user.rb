@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :address, presence: true
   
   has_many :reviews, dependent: :destroy
-  has_many :requests,  dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :chatrooms, dependent: :destroy
