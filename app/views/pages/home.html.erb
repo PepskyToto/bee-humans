@@ -1,9 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 <div style="width: 100%; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-<%= link_to "Needer", new_request_path %>
-<%= link_to "Helper", requests_path %>
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+  <div class="btns">
+    <%= link_to "Needer", new_request_path, class: "btn btn-primary btn-cool"%>
+    <%= link_to "Helper", requests_path, class: "btn btn-success btn-cool" %>
+  </div>
