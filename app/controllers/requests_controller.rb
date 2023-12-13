@@ -9,14 +9,21 @@ class RequestsController < ApplicationController
 
   def create 
     @request = Request.new(request_params)
-    @request.user = current_user
-    @skill = Skill.find(params[:skill_id])
-    @request.skill = @skill
+    @request.user_id = current_user.id
+    @request.address = current_user.address
+    @request.date = Date.today
+    #@skill = Skill.find(params[:request][:skill])
+    @request.competence_id = params[:request][:competence]
     if @request.save
       redirect_to requests_path
     else
       render :new
     end
+  end
+
+  private
+  def request_params
+    params.require(:request).permit(:description)
   end
 
 end
