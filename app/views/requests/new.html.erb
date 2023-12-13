@@ -1,6 +1,6 @@
 <%= simple_form_for @request, html: { class: "mt-3" } do |form| %>
   <% @skills = Skill.all %>
-  <%= form.input :competence, collection: Skill.all, label_method: :category, value_method: :id, prompt: 'Sélectionner une compétence' %>
+  <%= form.input :skill, collection: Skill.all, label_method: :category, value_method: :id, prompt: 'Sélectionner une compétence' %>
   <%= form.input :description, label: "Description" %>
   <%= form.file_field :photo, label: 'Télécharger une photo' %>
 

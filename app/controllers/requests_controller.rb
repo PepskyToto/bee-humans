@@ -13,7 +13,8 @@ class RequestsController < ApplicationController
     @request.address = current_user.address
     @request.date = Date.today
     #@skill = Skill.find(params[:request][:skill])
-    @request.competence_id = params[:request][:competence]
+    @request.skill_id = params[:request][:skill]
+    raise
     if @request.save
       redirect_to requests_path
     else
