@@ -1,20 +1,62 @@
 .avatar {
-  width: 40px;
-  border-radius: 50%;
+  width: 10vh;
+  height:10vh; /* Taille de l'avatar */
+  clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  margin-right: 3vh;
+  display: block;
+  position: relative;
+  // outline: 5vh solid $orange;
 }
-.avatar-large {
-  width: 56px;
-  border-radius: 50%;
+
+/* Style the avatar container */
+.profile-info {
+  position: relative; /* Make it a positioned container */
+  display: inline-block; /* Ensure inline-block to make it fit the content */
 }
-.avatar-bordered {
-  width: 40px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+
+/* Style the rating (subscript) */
+#star {
+  position: absolute; /* Position the span element absolutely */
+  top: -0.8vh; /* Adjust the vertical position as needed */
+  left: 75%; /* Center it horizontally */
+  z-index: 1;
+  width: 9vh;
+  height: 9vh;
+  font-size: 2.1vh;
+  font-weight: bold;
+  color: $light-beige;
+  background-image: url("https://res.cloudinary.com/durjq68ed/image/upload/v1702459944/star_c7r4fj.png");
+  background-size: 7vh;
+  background-repeat: no-repeat;
+  padding: 10% 7.8%;
+
 }
-.avatar-square {
-  width: 40px;
-  border-radius: 0px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+
+
+.user-points {
+  position: absolute; /* Position the span element absolutely */
+  top: 2px; /* Adjust the vertical position as needed */
+  right: 50%; /* Center it horizontally */
+  background-color: $orange; /* Add background color if needed */
+  padding: 2% 4.5% 4%;
+  clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  z-index: 1;
+  width: 4.5vh;
+  height: 4.5vh;
+  font-size: 2.5vh;
+  font-weight: bold;
 }
