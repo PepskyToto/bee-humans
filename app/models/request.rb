@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   belongs_to :user
-  belongs_to :competence, class_name: 'Skill'
+  belongs_to :skill
   has_one :chatroom
 
 end
