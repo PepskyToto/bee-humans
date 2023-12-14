@@ -31,13 +31,13 @@
 
 
 
-  <%# <div class="reviews">
+  <div class="reviews">
     <h2>Avis</h2>
-    <% @user.reviews.each do |review| %>
-      <%# <div class="review">
+    <% @reviews.each do |review| %>
+      <div class="review">
         <p><strong>Note :</strong> <%= review.rating %></p>
-        <%# <p><strong>Description :</strong> <%= review.description %></p>
-      <%# </div>
+      <p><strong>Description :</strong> <%= review.description %></p>
+      </div>
     <% end %>
-  <%# </div>
-</div> %>
+  </div>
+</div>
