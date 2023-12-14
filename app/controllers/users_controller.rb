@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:edit, :update]
 
+   def  index
+    @users = User.all
+    skill_id = params[:skill_id]
+    @request = Request.where(user_id: current_user.id).last
+  end
+
   def show
     @user = current_user
     @reviews = Review.where(reviewee_id: @user.id)
