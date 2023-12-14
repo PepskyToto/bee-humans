@@ -1,8 +1,14 @@
+
 <% @requests.sort_by { |request| request.user.distance_to(current_user) }.each do |request| %>
+ <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
   <div class="card mt-4">
     <div class="card-body d-flex align-items-center">
       <div class="user-rating me-3">
-        <%= link_to user_path(request.user), class: "text-decoration-none text-dark" do %>
+      <% if @chatroom %>
+      <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
+      <% else %>
+      <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom),data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
+      <% end %>
           <% if request.user.average_rating %>
             <div class="average-rating-bubble">
               <%= request.user.average_rating %>
@@ -20,7 +26,6 @@
         <p class="card-text"><strong>Date:</strong> <%= request.created_at.strftime('%B %e, %Y %l:%M %p') %></p>
         <p class="card-text"><strong>Location:</strong> <%= request.address %></p>
         <!-- Ajoutez d'autres informations au besoin -->
-      <% end %>
     </div>
   </div>
 <% end %>
