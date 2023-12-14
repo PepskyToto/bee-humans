@@ -14,8 +14,8 @@ class UsersController < ApplicationController
     @reviews = Review.where(reviewee_id: @user.id)
     ratings = []
     @reviews.each do |review|
-      ratings << review.rating 
-    end 
+      ratings << review.rating
+    end
     average_rating = ratings.sum / ratings.length.to_f
     @user.average_rating = average_rating
   end

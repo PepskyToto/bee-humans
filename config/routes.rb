@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :bookmarks, only: [:index, :create, :destroy]
-  resources :reviews, only: [:index, :create, :destroy]
-  resources :messages, only: [:index, :create, :destroy]
-  resources :users_skills, only: [:index, :create, :destroy]
-  resources :users, only: [:show, :edit]
+  resources :users do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :users_skills, only: [:index, :create, :destroy]
+    resources :messages, only: [:index, :create, :destroy]
+    resources :users, only: [:show, :edit, :index]
+  end
   resources :skills, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   resources :skills
