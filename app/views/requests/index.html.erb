@@ -1,14 +1,19 @@
 <% @requests.each do |request| %>
+  <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+
   <div class="card mt-4">
     <div class="card-body">
-      <%= link_to request_path(request), class: "text-decoration-none text-dark" do %>
+      <% if @chatroom %>
+      <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
+      <% else %>
+      <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom),data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
+      <% end %>
         <h5 class="card-title"><%= request.title %></h5>
         <p class="card-text"><%= request.description %></p>
         <p class="card-text"><strong>Posted by:</strong> <%= request.user.username %></p>
         <p class="card-text"><strong>Date:</strong> <%= request.created_at.strftime('%B %e, %Y %l:%M %p') %></p>
         <p class="card-text"><strong>Location:</strong> <%= request.address %></p>
         <!-- Ajoutez d'autres informations au besoin -->
-      <% end %>
     </div>
   </div>
 <% end %>
