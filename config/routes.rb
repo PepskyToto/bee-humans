@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :requests do
-    resources :chatrooms , only: [:show,:create]
+    resources :chatrooms , only: [:show,:create, :new]
   end
 
   resources :chatrooms, only: [:index,:destroy] do

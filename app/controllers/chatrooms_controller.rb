@@ -17,19 +17,23 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(chatroom_params)
-    @chatroom.user = current_user
+    @chatroom = Chatroom.new()
+    @chatroom.helper_id = current_user.id
+    @request = Request.find(params[:request_id])
+    @chatroom.needer_id = @request.user_id
+    @chatroom.request_id = @request.id
+    @chatroom.status = 1
     if @chatroom.save
-      redirect_to chatroom_path(@chatroom)
+      redirect_to request_chatroom_path(@request.id, @chatroom)
     else
-      render :new
+      render :back
     end
   end
 
   private
 
   def chatroom_params
-    params.require(:chatroom).permit(:request_id)
+    params.require(:chatroom).permit(:request_id, :helper_id, :needer_id, )
   end
 
   def authenticate_user!

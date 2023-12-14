@@ -12,7 +12,7 @@ Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
 puts "generating new Users"
-user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France")
+user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France", average_rating: 5)
 user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "azerty", address: "11 impasse Jeanne Marlin, Nice, France")
 
 puts "Destroying Skills..."

@@ -17,8 +17,8 @@ class RequestsController < ApplicationController
     #@skill = Skill.find(params[:request][:skill])
     @request.skill_id = params[:request][:skill]
     if @request.save
-      redirect_to users_path
-
+      redirect_to user_path(@request.skill_id)
+      #redirect_to user_path
     else
       render :new
     end
