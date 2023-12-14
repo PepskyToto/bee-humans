@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 puts "Destroying ancient users..."
+Message.destroy_all
+Chatroom.destroy_all
 User.destroy_all
 puts "generating new Users"
 user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France")
@@ -22,7 +24,7 @@ skills = categories.map { |category| Skill.create(category: category) }
 
 puts "Assigning skills to users..."
 user1.skills << skills[0] << skills[1] << skills[2]
-user2.skills << skills[3] << skills[4] << skills[5]
+user2.skills << skills[3] << skills[4] << skills[5] << skills[2]
 
 user1.requests.create(
   title: "Aide pour réparer une robe",
