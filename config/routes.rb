@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
   resources :skills, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-
   resources :skills
 
   resources :requests do

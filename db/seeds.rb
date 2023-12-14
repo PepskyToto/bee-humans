@@ -16,7 +16,7 @@ user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "
 puts "Destroying Skills..."
 Skill.destroy_all
 puts "generating new Skill"
-categories = ["Couture", "Electronique", "Eletrique", "Plomberie", "Carrosserie", "Informatique"]
+categories = ["Couture", "Electronique", "Electrique", "Plomberie", "Carrosserie", "Informatique"]
 skills = categories.map { |category| Skill.create(category: category) }
 
 
@@ -55,5 +55,9 @@ user2.requests.create(
   date: Date.tomorrow,
   address: "15 Avenue Notre Dame, Nice, France"
 )
+
+puts "Creating Reviews..."
+review = Review.create(rating: 4, description: "il a dead ça", reviewer_id: user1.id, reviewee_id: user2.id)
+review2 = Review.create( rating: 5, description: "mon jean est réparé!", reviewer_id: user1.id, reviewee_id: user2.id)
 
 puts "Seed completed!"
