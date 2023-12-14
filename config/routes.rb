@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :create, :destroy]
   resources :users_skills, only: [:index, :create, :destroy]
   resources :users, only: [:show, :edit]
+  resources :skills, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
 
   resources :skills
 
