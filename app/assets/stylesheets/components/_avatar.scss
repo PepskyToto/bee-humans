@@ -12,6 +12,7 @@
   margin-right: 3vh;
   display: block;
   position: relative;
+  object-fit: cover;
   // outline: 5vh solid $orange;
 }
 
@@ -23,27 +24,26 @@
 
 /* Style the rating (subscript) */
 #star {
-  position: absolute; /* Position the span element absolutely */
-  top: -0.8vh; /* Adjust the vertical position as needed */
-  left: 60%; /* Center it horizontally */
+  position: absolute;
+  top: -1.7999999999999998vh;
+  left: 60%;
   z-index: 1;
   width: 9vh;
   height: 9vh;
-  font-size: 2.1vh;
-  font-weight: bold;
-  color: $light-beige;
-  background-image: url("https://res.cloudinary.com/durjq68ed/image/upload/v1702459944/star_c7r4fj.png");
-  background-size: 7vh;
+  font-size: 9px;
+  color: #F1EFDC;
+  background-image: url(https://res.cloudinary.com/durjq68ed/image/upload/v1702459944/star_c7r4fj.png);
+  background-size: 4vh;
   background-repeat: no-repeat;
   padding: 15% 14%;
-
 }
+
 
 
 .user-points {
   position: absolute; /* Position the span element absolutely */
-  top: 2px; /* Adjust the vertical position as needed */
-  right: 70%; /* Center it horizontally */
+  top: -60px; /* Adjust the vertical position as needed */
+  right: -48px; /* Center it horizontally */
   background-color: $aubergine; /* Add background color if needed */
   padding: 2% 7.5% 10%;
   clip-path: polygon(
@@ -60,4 +60,10 @@
   font-size: 2.5vh;
   font-weight: bold;
   color: $light-beige;
+}
+
+.user-points-container {
+  position: relative;
+  z-index:2;
+  transform: scale(0.6); /* Ajustez la valeur selon vos besoins */
 }

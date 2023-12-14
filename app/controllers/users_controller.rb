@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :check_user, only: [:edit, :update]
 
   def show
-    # Logique pour afficher le profil de l'utilisateur
+    @user = current_user
   end
 
   def edit
