@@ -1,15 +1,16 @@
 .rounded-image {
   width: 10vw; /* 5% de la largeur de la vue */
   height: 10vw; /* Hauteur égale à 10% de la largeur de la vue */
-  border: 2px solid black; /* Bordure noire */
+  border: 4px solid $aubergine; /* Bordure aubergine à changer en fonction en ligne ou pas */
   border-radius: 50%; /* Arrondir l'image */
   display: block;
   margin: auto; /* Centre l'image horizontalement */
   background-size: cover;
+  object-fit: cover;
 }
 
 .maps-size{
-  width: 100%; 
+  width: 100%;
   height: 90vh;}
 
 .mapboxgl-popup {
@@ -26,5 +27,3 @@
   overflow: scroll; /* Empêche le texte de déborder du popup */
   text-overflow: ellipsis; /* Ajoute des points de suspension (...) pour le texte qui dépasse */
 }
-
-
