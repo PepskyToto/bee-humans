@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
   def index
-    @requests = Request.all
+    user_skills = current_user.skills
+    @requests = Request.joins(:skill).where(skills: { id: user_skills }).distinct
+    #@requests = Request.all
   end
 
   def new
