@@ -11,6 +11,13 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @reviews = Review.where(reviewee_id: @user.id)
+    ratings = []
+    @reviews.each do |review|
+      ratings << review.rating 
+    end 
+    average_rating = ratings.sum / ratings.length.to_f
+    @user.average_rating = average_rating
   end
 
   def edit
