@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
-  def create 
+  def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
     @request.address = current_user.address
