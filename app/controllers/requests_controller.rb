@@ -14,7 +14,6 @@ class RequestsController < ApplicationController
     @request.date = Date.today
     #@skill = Skill.find(params[:request][:skill])
     @request.skill_id = params[:request][:skill]
-    raise
     if @request.save
       redirect_to requests_path
     else
