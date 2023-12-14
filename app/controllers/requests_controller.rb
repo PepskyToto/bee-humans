@@ -7,13 +7,13 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
-  def create 
+  def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
     @request.address = current_user.address
     @request.date = Date.today
     #@skill = Skill.find(params[:request][:skill])
-    @request.competence_id = params[:request][:competence]
+    @request.skill_id = params[:request][:skill]
     if @request.save
       redirect_to requests_path
     else
