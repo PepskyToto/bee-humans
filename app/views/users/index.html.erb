@@ -1,0 +1,27 @@
+<%# Prendre l'ID de la compétence de la requête et filtrer les utilisateurs ayant cette compétence %>
+<%# Une compétence (skill) contient une ID et une catégorie. On souhaite afficher la catégorie de la compétence de la requête %>
+
+<div>
+  <% users_with_requested_skill = [] %>
+  <% @users.each do |user| %>
+    <% user.skills.each do |skill| %>
+      <% if skill.id == @request.skill_id %>
+        <% users_with_requested_skill << user %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Maintenant, user_with_requested_skill contient tous les utilisateurs ayant la compétence demandée %>
+
+  <% skills_combined = [] %>
+<% users_with_requested_skill.each do |user| %>
+  <p>Nom de l'utilisateur : <%= user.username %></p>
+  <p>Email de l'utilisateur : <%= user.email %></p>
+  <% user.skills.each do |skill| %>
+    <% skills_combined << skill.category %>
+  <% end %>
+<% end %>
+
+<p>Compétences de l'utilisateur : <%= skills_combined.join(", ") %></p>
+
+</div>
