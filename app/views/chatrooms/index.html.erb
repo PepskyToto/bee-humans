@@ -5,7 +5,7 @@
     <% end %>
   <% @chatrooms.each do |chatroom| %>
     <% if chatroom.helper_id == current_user.id %>
-      <%= link_to chatroom_path(chatroom) do %>
+      <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id) do %>
         <div class="chatroom">
           <p>Votre discussion avec <%= User.find(chatroom.needer_id).username %></p>
         </div>
@@ -17,11 +17,12 @@
   <% end %>
     <% @chatrooms.each do |chatroom| %>
     <% if chatroom.needer_id == current_user.id %>
-      <%= link_to chatroom_path(chatroom) do %>
+      <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id) do %>
         <div class="chatroom">
           <p>Votre discussion avec <%= User.find(chatroom.helper_id).username %></p>
         </div>
       <% end %>
+        <p> <strong><%= User.find(chatroom.messages.last.user_id).username %></strong> : <%= chatroom.messages.last.content %></p>
     <% end %>
   <% end %>
 </div>

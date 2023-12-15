@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-puts "Destroying ancient users..."
+puts "Destroying ancient messages, chatrooms, users..."
 Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
@@ -26,7 +26,8 @@ puts "Assigning skills to users..."
 user1.skills << skills[0] << skills[1] << skills[2]
 user2.skills << skills[3] << skills[4] << skills[5] << skills[2]
 
-user1.requests.create(
+puts "creating request..."
+user2.requests.create(
   title: "Aide pour réparer une robe",
   description: "Je cherche quelqu'un qui peut m'aider à réparer ma robe.",
   skill: skills[0],
@@ -34,7 +35,7 @@ user1.requests.create(
   address: "25 Avenue des Fleurs, Nice, France"
 )
 
-user1.requests.create(
+user2.requests.create(
   title: "Besoin d'aide pour une panne électrique",
   description: "Ma lampe ne s'allume plus, j'ai besoin d'aide pour réparer la panne électrique.",
   skill: skills[2],
@@ -42,7 +43,7 @@ user1.requests.create(
   address: "8 Rue de la Buffa, Nice, France"
 )
 
-user2.requests.create(
+user1.requests.create(
   title: "Problème de plomberie dans la cuisine",
   description: "Il y a une fuite d'eau dans ma cuisine, j'aurais besoin d'aide pour réparer la plomberie.",
   skill: skills[3],
@@ -50,16 +51,18 @@ user2.requests.create(
   address: "10 Rue Gioffredo, Nice, France"
 )
 
-user2.requests.create(
+user1.requests.create(
   title: "Besoin d'aide en informatique",
   description: "Mon ordinateur ne fonctionne pas correctement, j'ai besoin de quelqu'un qui s'y connaît en informatique.",
   skill: skills[5],
   date: Date.tomorrow,
   address: "15 Avenue Notre Dame, Nice, France"
 )
+puts "request created successfully"
 
 puts "Creating Reviews..."
 review = Review.create(rating: 4, description: "il a dead ça", reviewer_id: user1.id, reviewee_id: user2.id)
 review2 = Review.create( rating: 5, description: "mon jean est réparé!", reviewer_id: user1.id, reviewee_id: user2.id)
+puts "Reviews created successfully"
 
 puts "Seed completed!"

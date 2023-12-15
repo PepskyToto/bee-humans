@@ -16,12 +16,15 @@
         </div>
 
         <div class="request-info col-8">
+        <% if current_user.pollen >= 0 %>
           <% if @chatroom %>
             <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
           <% else %>
             <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
           <% end %>
-
+          <% else %>
+            <p class="text-danger">Vous n'avez pas assez de pollen pour demander un service ! Rendez service pour en gagner, puis revenez ici!</p>
+          <% end %>
           <p class="card-text"><strong>Type de compétence:</strong> <span style="color: #6b0f45;"><%= request.skill.category %></span></p>
           <p class="card-text"><%= request.description %></p>
           <p class="card-text"><strong>Posté par :</strong> <%= request.user.username %></p>
