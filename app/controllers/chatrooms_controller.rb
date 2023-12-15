@@ -7,6 +7,8 @@ class ChatroomsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @review = Review.new
     @chatroom = Chatroom.find(params[:id])
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new

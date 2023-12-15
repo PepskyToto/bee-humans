@@ -6,10 +6,13 @@ class ReviewsController < ApplicationController
 
   def create
     @review=Review.new(review_params)
-    @review.reviewer_id = current_user.id
-    @review.reviewee_id = params[:user_id]
+    chatroom_id = params[:review][:chatroom_id]
+    @chatroom = Chatroom.find(chatroom_id)
+    @request = Request.find(@chatroom.request_id)
+    @review.reviewer_id = @chatroom.needer_id
+    @review.reviewee_id = @chatroom.helper_id
     if @review.save
-      redirect_to new_user_review_path(@review.reviewee_id), notice: 'Avis crée'
+      redirect_to request_chatroom_path(@request.id, @chatroom), notice: 'Review was successfully'
     else
       flash[:alert] = "Something went wrong."
       render :new
