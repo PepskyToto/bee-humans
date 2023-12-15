@@ -11,10 +11,13 @@ class ReviewsController < ApplicationController
     @request = Request.find(@chatroom.request_id)
     @review.reviewer_id = @chatroom.needer_id
     @review.reviewee_id = @chatroom.helper_id
+    retrait = User.find(@chatroom.needer_id)
+    retrait.pollen -= 1
+    retrait.save!
     if @review.save
       @chatroom.status = 6
       @chatroom.save
-      redirect_to request_chatroom_path(@chatroom, @request.id), notice: 'Review was successfully'
+      redirect_to request_chatroom_path(@chatroom, request_id: @chatroom.request.id), notice: 'Votre avis a été pris en compte!'
     else
       flash[:alert] = "Something went wrong."
       render :new

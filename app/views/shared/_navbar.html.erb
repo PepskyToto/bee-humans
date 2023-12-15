@@ -18,10 +18,10 @@
       <div class="profile-info">
           <div class="user-details">
             <div class="user-points-container">
-            <span class="user-points">10</span>
+            <span class="user-points"><%= current_user.pollen %></span>
             </div>
             <div class="ratings">
-              <span class="user-rating" id="star">4.5</span>
+              <span class="user-rating" id="star"><%= current_user.average_rating %></span>
             </div>
 
           </div>
