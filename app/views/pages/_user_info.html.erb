@@ -1,9 +1,25 @@
-<h2><%= user.username %></h2>
+<div class="pop-up">
+
+
+<div class="user-detail">
+  <div class="user-points-cont">
+    <span class="user-pollen"><p>10</p></span>
+  </div>
+  <div class="rating">
+    <span class="user-note"><p>4.5</p></span>
+  </div>
+</div>
+
+<h2 class="user-name"><%= user.username %></h2>
+
+<div class="category-container">
 <% user.skills.each do |skill| %>
-<p><%= skill.category %></p>
+<p class="category"><%= skill.category %></p>
 <% end %>
+</div>
 <% if user.requests.size == 0 %>
-<p>Cet utilisateur n'a pas publié d'annonces</p>
+<p class="request-infos">Cet utilisateur n'a pas publié d'annonces</p>
 <% else %>
-<p> Cette utilisateur à besoin d'aide en <%= Skill.find(user.requests.first.skill_id).category %> </p>
+<p class="request-infos"> Cette utilisateur à besoin d'aide en <%= Skill.find(user.requests.first.skill_id).category %> </p>
 <% end %>
+</div>

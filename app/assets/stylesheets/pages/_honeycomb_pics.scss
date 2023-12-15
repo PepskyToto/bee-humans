@@ -15,7 +15,8 @@
 
 .mapboxgl-popup {
   max-width: 100px;
-  color: $beige ; /* Couleur de fond du popup */
+  // background-color: $light-beige ; /* Couleur de fond du popup */
+  color: $aubergine;
 }
 
 .mapboxgl-ctrl-attrib-inner{
@@ -23,7 +24,105 @@
 }
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow: scroll; /* Empêche le texte de déborder du popup */
   text-overflow: ellipsis; /* Ajoute des points de suspension (...) pour le texte qui dépasse */
+  background-color: $light-beige !important;
+  border: 1vh solid white !important;
+  border-radius: 10px !important;
+}
+
+
+
+
+  .category-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+/* Si le nombre d'éléments est impair, centrez le dernier élément */
+  .category-container:last-child(:nth-child(even)) .category:last-child {
+    grid-column: span 2; /* Occupe les deux colonnes */
+    justify-content: center;
+  }
+
+
+  .user-name {
+    color: $aubergine;
+    font-weight: bold;
+    display:flex;
+    flex-direction: column;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  .category {
+    background-color: $orange;
+    color: $light-beige;
+    padding: 2% 2%;
+    margin: 5px 5px;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  .request-infos {
+    color: $aubergine;
+  }
+
+  .user-points-cont {
+    position: absolute; /* Position the span element absolutely */
+    /* Adjust the position as needed */
+    top: 2vh;
+    left: 27%;
+    background-color: $aubergine; /* Add background color if needed */
+    width: 3.5em;
+    height: 3.5em;
+    clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  z-index: 1;
+
+  .user-pollen {
+  padding: 15%;
+  font-weight: bold;
+  color: $light-beige;
+  }
+
+
+  }
+
+  .user-pollen p {
+    margin-top: -1.5vh;
+    font-size: 3.5vh;
+  }
+
+.pop-up {
+  .user-detail {
+    // align-items: center;
+    margin: 20px;
+    padding-top: 10px;
+    align-items: center;
+    display: flex;
+  }
+
+
+  .user-note {
+    position: absolute;
+    left: 54%;
+    top: 3%;
+    z-index: 1;
+    width: 10vh;
+    color: #F1EFDC;
+    background-image: url(https://res.cloudinary.com/durjq68ed/image/upload/v1702459944/star_c7r4fj.png);
+    background-size: 8.5vh;
+    background-repeat: no-repeat;
+    p {
+      padding: 27% 0%;
+      margin-left: -1.3vw;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+  }
 }
