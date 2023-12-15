@@ -21,16 +21,6 @@
                 required: true,
                 input_html: { autocomplete: "description" } %>
 
-  <%= f.simple_fields_for :request, @request do |request_form| %>
-      <% @skills = Skill.all %>
-      <% @skills.each do |skill| %>
-        <%= request_form.collection_check_boxes :skill, [skill], :id, :to_s do |cb| %>
-          <%= cb.check_box %>
-          <%= cb.label { skill.category } %>
-        <% end %>
-      <% end %>
-    <% end %>
-
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} caractères au minimum" if @minimum_password_length),
@@ -39,6 +29,11 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+  </div>
   </div>
 
   <div class="form-actions">

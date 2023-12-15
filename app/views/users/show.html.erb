@@ -1,6 +1,5 @@
 <%# #Mettre la pdp de aurore en image de profil %>
 
-
 <div class="user-profile">
   <h1>Profil de <%= @user.username %></h1>
 
@@ -8,7 +7,7 @@
     <span class="status online">En ligne</span>
   <% else %>
     <span class="status offline">Hors ligne</span>
-  <% end%>
+  <% end %>
 
   <div class="basic-info">
     <p><strong>Email :</strong> <%= @user.email %></p>
@@ -29,7 +28,8 @@
     <% end %>
   </div>
 
-
+  <%= link_to "Modifier le profil ou les compétences", edit_user_registration_path, class: "btn btn-primary" %>
+</div>
 
   <%# <div class="reviews">
     <h2>Avis</h2>
