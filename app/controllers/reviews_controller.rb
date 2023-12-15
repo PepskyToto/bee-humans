@@ -13,7 +13,10 @@ class ReviewsController < ApplicationController
     @review.reviewee_id = @chatroom.helper_id
     retrait = User.find(@chatroom.needer_id)
     retrait.pollen -= 1
-    retrait.save!
+    retrait.save
+    ajout = User.find(@chatroom.helper_id)
+    ajout.pollen += 1
+    ajout.save
     if @review.save
       @chatroom.status = 6
       @chatroom.save
