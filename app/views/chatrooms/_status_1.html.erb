@@ -6,7 +6,7 @@
   <p class="messages" data-chatroom-subscription-target="messages"><%= @chatroom.messages[0].content %></p>
   <% if current_user.id == @chatroom.needer_id %>
   <%= link_to "Accepter", chatroom_path(id: @chatroom, valid: true), data: { turbo_method: :patch } %>
-  <%= link_to "Refuser", chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch } %>
+  <%= link_to "Refuser", chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch, turbo_confirm: 'Voulez-vous vraiment refuser cette demande de service?' } %>
   <% end %>
 
   <% else %>
