@@ -7,12 +7,10 @@ class ReviewsController < ApplicationController
   def create
     @review=Review.new(review_params)
     @review.reviewer_id = current_user.id
-    @review.reviewee_id = 3
+    @review.reviewee_id = params[:user_id]
     if @review.save
-      puts "Review saved successfully!" # Ajoutez ceci pour le débogage
-      redirect_to new_user_review_path(@review.reviewee_id), notice: 'Review'
+      redirect_to new_user_review_path(@review.reviewee_id), notice: 'Avis crée'
     else
-      puts "Review not saved!" # Ajoutez ceci pour le débogage
       flash[:alert] = "Something went wrong."
       render :new
     end
