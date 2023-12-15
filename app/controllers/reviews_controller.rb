@@ -6,13 +6,14 @@ class ReviewsController < ApplicationController
 
   def create
     @review=Review.new(review_params)
-    @review.reviewer_id = current_user.id
-    @review.reviewee_id = 3
+    chatroom_id = params[:review][:chatroom_id]
+    @chatroom = Chatroom.find(chatroom_id)
+    @request = Request.find(@chatroom.request_id)
+    @review.reviewer_id = @chatroom.needer_id
+    @review.reviewee_id = @chatroom.helper_id
     if @review.save
-      puts "Review saved successfully!" # Ajoutez ceci pour le débogage
-      redirect_to new_user_review_path(@review.reviewee_id), notice: 'Review'
+      redirect_to request_chatroom_path(@request.id, @chatroom), notice: 'Review was successfully'
     else
-      puts "Review not saved!" # Ajoutez ceci pour le débogage
       flash[:alert] = "Something went wrong."
       render :new
     end

@@ -7,6 +7,8 @@ class ChatroomsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @review = Review.new
     @chatroom = Chatroom.find(params[:id])
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
@@ -24,19 +26,58 @@ class ChatroomsController < ApplicationController
     @chatroom.request_id = @request.id
     @chatroom.status = 1
     if @chatroom.save
-      redirect_to request_chatroom_path(@request.id, @chatroom)
+      # Créez un message automatique après la création de la chatbox
+      @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre service!")
+      #first_message: true, si first_message : partiel _firstmessage
+      if @message.save
+        redirect_to request_chatroom_path(@request.id, @chatroom)      
+      else
+        render :back
+      end
     else
       render :back
     end
   end
 
+  def update
+    @chatroom = Chatroom.find_by(id: params[:id])
+    
+    if params["valid"] == "true"
+      @chatroom.status = 2
+      @chatroom.save
+    elsif params["valid"] == "false"
+      @chatroom.status = 4
+      @chatroom.save
+    elsif params["done"] == "true"
+      @chatroom.status = 3
+      @chatroom.save
+    elsif params["done"] == "false"
+      @chatroom.status = 5
+      @chatroom.save
+    end
+    if @chatroom.save
+      redirect_to request_chatroom_path(@chatroom.id), notice: "chatroom updated successfully."
+    else
+      render :back
+    end
+  end
+
+
   private
 
   def chatroom_params
-    params.require(:chatroom).permit(:request_id, :helper_id, :needer_id, )
+    params.require(:chatroom).permit(:request_id, :helper_id, :needer_id)
   end
 
   def authenticate_user!
 
   end
 end
+
+
+#status meaning
+# 1: chatbox initié et needer doit accepter ou refuser le service.
+# 2: le user a accepté , chatbox débloqué , le service est pending
+# 3: le service a été rendu , review débloqué.
+# 4: le user a refusé, chatbox bloqué.
+#5: le user a accepté, mais le service n'a jamais été rendu.

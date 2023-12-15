@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users/registrations' }
   root to: "pages#home"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :chatrooms , only: [:show,:create, :new]
   end
 
-  resources :chatrooms, only: [:index,:destroy] do
+  resources :chatrooms, only: [:index,:destroy, :update] do
     resources :messages, only: [:create]
   end
 

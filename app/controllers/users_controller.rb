@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:edit, :update]
 
+
    def  index
     @users = User.all
     skill_id = params[:skill_id]
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :address, :description, :photo)
+    params.require(:user).permit(:username, :email, :address, :description, :photo, :skill_id)
     # Ajoutez ici les autres attributs que vous souhaitez permettre de modifier
   end
 

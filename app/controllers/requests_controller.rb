@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   def index
     user_skills = current_user.skills
     @requests = Request.joins(:skill).where(skills: { id: user_skills }).distinct
-    # @requests = Request.includes(:user, :skill).where(skills: { id: current_user.skills }).order("users.distance_to(current_user)").references(:user)
+
   end
 
   def new
