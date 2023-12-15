@@ -2,11 +2,25 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :authenticate_user!
   before_action :check_user, only: [:edit, :update]
+  before_action :mean
 
-   def  index
+  def  index
     @users = User.all
     skill_id = params[:skill_id]
     @request = Request.where(user_id: current_user.id).last
+  end
+
+  def mean 
+    @user = current_user
+    if Review.where(reviewee_id: current_user.id) != []
+      @reviews = Review.where(reviewee_id: current_user.id)
+      ratings = []
+      @reviews.each do |review|
+        ratings << review.rating
+      end
+      average_rating = ratings.sum / ratings.length.to_f
+      @user.average_rating = average_rating
+    end
   end
 
   def show
@@ -14,8 +28,8 @@ class UsersController < ApplicationController
     @reviews = Review.where(reviewee_id: @user.id)
     ratings = []
     @reviews.each do |review|
-      ratings << review.rating 
-    end 
+      ratings << review.rating
+    end
     average_rating = ratings.sum / ratings.length.to_f
     @user.average_rating = average_rating
   end
@@ -38,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :address, :description, :photo)
+    params.require(:user).permit(:username, :email, :address, :description, :photo, :skill_id)
     # Ajoutez ici les autres attributs que vous souhaitez permettre de modifier
   end
 

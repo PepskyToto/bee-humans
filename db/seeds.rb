@@ -8,9 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 puts "Destroying ancient users..."
+Message.destroy_all
+Chatroom.destroy_all
 User.destroy_all
 puts "generating new Users"
-user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France")
+user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France", average_rating: 5)
 user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "azerty", address: "11 impasse Jeanne Marlin, Nice, France")
 
 puts "Destroying Skills..."
@@ -22,12 +24,39 @@ skills = categories.map { |category| Skill.create(category: category) }
 
 puts "Assigning skills to users..."
 user1.skills << skills[0] << skills[1] << skills[2]
-user2.skills << skills[3] << skills[4] << skills[5]
+user2.skills << skills[3] << skills[4] << skills[5] << skills[2]
 
-puts "Creating a request..."
-Request.destroy_all
-request = Request.create(description: "besoin d'aide pour réparer une ampoule", title: "Problème d'électricité", skill_id: Skill.find_by_category("Electrique").id, date: Date.today, user_id: user1.id)
-request2 = Request.create(description: "besoin d'aide pour réparer mon jean", title: "Jean troué", skill_id: Skill.find_by_category("Couture").id, date: Date.today, user_id: user1.id)
+user1.requests.create(
+  title: "Aide pour réparer une robe",
+  description: "Je cherche quelqu'un qui peut m'aider à réparer ma robe.",
+  skill: skills[0],
+  date: Date.today,
+  address: "25 Avenue des Fleurs, Nice, France"
+)
+
+user1.requests.create(
+  title: "Besoin d'aide pour une panne électrique",
+  description: "Ma lampe ne s'allume plus, j'ai besoin d'aide pour réparer la panne électrique.",
+  skill: skills[2],
+  date: Date.tomorrow,
+  address: "8 Rue de la Buffa, Nice, France"
+)
+
+user2.requests.create(
+  title: "Problème de plomberie dans la cuisine",
+  description: "Il y a une fuite d'eau dans ma cuisine, j'aurais besoin d'aide pour réparer la plomberie.",
+  skill: skills[3],
+  date: Date.today,
+  address: "10 Rue Gioffredo, Nice, France"
+)
+
+user2.requests.create(
+  title: "Besoin d'aide en informatique",
+  description: "Mon ordinateur ne fonctionne pas correctement, j'ai besoin de quelqu'un qui s'y connaît en informatique.",
+  skill: skills[5],
+  date: Date.tomorrow,
+  address: "15 Avenue Notre Dame, Nice, France"
+)
 
 puts "Creating Reviews..."
 review = Review.create(rating: 4, description: "il a dead ça", reviewer_id: user1.id, reviewee_id: user2.id)

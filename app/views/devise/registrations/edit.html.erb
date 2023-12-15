@@ -23,6 +23,10 @@
                 hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
   </div>
 
   <div class="form-actions">

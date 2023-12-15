@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= simple_form_for [@user, @review] do |f| %>
+        <%= f.input :content, label: "Avis" %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Evaluez votre experience", input_html: { data: { controller: "star-rating" } } %>
+        <%= f.submit "Envoyez votre avis" %>
+      <% end %>
+    </div>
+  </div>
+</div>

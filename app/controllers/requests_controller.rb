@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
   def index
-    @requests = Request.all
+    user_skills = current_user.skills
+    @requests = Request.joins(:skill).where(skills: { id: user_skills }).distinct
+
   end
 
   def new
@@ -15,10 +17,10 @@ class RequestsController < ApplicationController
     #@skill = Skill.find(params[:request][:skill])
     @request.skill_id = params[:request][:skill]
     if @request.save
-      redirect_to user_path(@request.user)
-
+      redirect_to users_path
+      #redirect_to user_path
     else
-      render :new
+      render :back
     end
   end
 

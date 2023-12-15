@@ -1,1 +1,38 @@
-hihi
+<% @requests.sort_by { |request| request.distance_to_user(current_user) }.each do |request| %>
+<% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+  <div class="card mt-4">
+    <div class="card-body d-flex align-items-center">
+      <div class="user-rating me-3" style="width: 80px;">
+        <%= link_to user_path(request.user), class: "text-decoration-none text-dark" do %>
+          <% if request.user.average_rating %>Cet utilisateur à une note moyenne de :
+            <div class="average-rating-bubble">
+              <strong><%= request.user.average_rating %></strong>
+            </div>
+          <% else %>
+            <p>Cet utilisateur n'a pas encore d'avis</p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="request-info col-8">
+        <% if @chatroom %>
+          <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
+        <% else %>
+          <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
+        <% end %>
+
+        <p class="card-text"><strong>Type de compétence:</strong> <span style="color: #6b0f45;"><%= request.skill.category %></span></p>
+        <p class="card-text"><%= request.description %></p>
+        <p class="card-text"><strong>Posté par :</strong> <%= request.user.username %></p>
+        <p class="card-text"><strong>Date :</strong> <%= request.created_at.strftime('%B %e, %Y %l:%M %p') %></p>
+        <p class="card-text"><strong>Localisation :</strong> <%= request.address %></p>
+        <% if current_user.latitude && current_user.longitude %>
+          <% distance = request.distance_to_user(current_user) %>
+          <% if distance %>
+            <p class="card-text"><strong>Distance : </strong>à <%= distance.round(2) %> km de vous</p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

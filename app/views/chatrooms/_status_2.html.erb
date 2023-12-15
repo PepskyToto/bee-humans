@@ -1,0 +1,69 @@
+<div class="container chatroom" data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  <div class="bandeau">
+    <% if current_user.id == @chatroom.needer_id %>
+    <h5>Le sevice a-t-il été effectué ?</h5>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Oui</button>
+    <%= link_to "Non", chatroom_path(id: @chatroom, done: false), data: { turbo_method: :patch }, class: "btn btn-primary" %>
+    <% end %>
+  
+
+  </div>
+  <h1>#<%= @chatroom.id %></h1>
+  <% if @chatroom.messages[0].first_message == true %>
+  <p class="messages" data-chatroom-subscription-target="messages"><%= @chatroom.messages[0].content %></p>
+  <p>Le service a été accepté.</p>
+
+  <% else %>
+  <div class="messages" data-chatroom-subscription-target="messages">
+    <% @chatroom.messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@chatroom, @message],
+    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
+    <%= f.input :content,
+      label: false,
+      placeholder: "Message ##{@chatroom.id}",
+      wrapper_html: { class: "flex-grow-1" } %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= simple_form_for [@user, @review] do |f| %>
+        <%= f.input :content, label: "Avis" %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Evaluez votre experience", input_html: { data: { controller: "star-rating" } } %>
+        <%= f.hidden_field :chatroom_id, value: @chatroom.id %>
+        <%= f.submit "Envoyez votre avis" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

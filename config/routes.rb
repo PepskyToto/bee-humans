@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users/registrations' }
   root to: "pages#home"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,18 +9,21 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :bookmarks, only: [:index, :create, :destroy]
-  resources :reviews, only: [:index, :create, :destroy]
-  resources :messages, only: [:index, :create, :destroy]
-  resources :users_skills, only: [:index, :create, :destroy]
-  resources :users, only: [:show, :edit, :index]
+  resources :users do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :users_skills, only: [:index, :create, :destroy]
+    resources :messages, only: [:index, :create, :destroy]
+    resources :users, only: [:show, :edit, :index]
+  end
+  resources :skills, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   resources :skills
 
   resources :requests do
-    resources :chatrooms , only: [:show,:create]
+    resources :chatrooms , only: [:show,:create, :new]
   end
 
-  resources :chatrooms, only: [:index,:destroy] do
+  resources :chatrooms, only: [:index,:destroy, :update] do
     resources :messages, only: [:create]
   end
 
