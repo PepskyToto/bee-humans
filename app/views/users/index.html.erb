@@ -16,12 +16,11 @@
       <label>
         <%= check_box_tag 'request[user_ids][]', user.id %>
         Pseudo: <%= user.username %>
-      </label>
-      <p>Utilisateur : <%= user.email %></p>
       <% user.skills.each do |skill| %>
         <% skills_combined << skill.category %>
       <% end %>
       <p>Compétences de l'utilisateur : <%= skills_combined.join(", ") %></p>
+      </label>
     <% end %>
   </div>
 <%# Il faudrait que chaque user soit selectionable a partir de l'index %>
