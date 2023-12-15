@@ -1,11 +1,25 @@
+<%# il faut linker le bouton ruche a un show filtré des chatroom. Pour les filtrer il faut que on affiche toutes les chatroom avec cette condition
+@chatroom.helper_id == current_user.id || @chatroom.needer_id == current_user.id
+à vérifier les doubles pipe mais normalement c’est ça
+:coche_blanche
+tu crée @chatrooms = Chatroom.all et ensuite tu fais @chatrooms.where(:helper_id current_user_id) je crois.
+Vérifie la syntaxe mais normalement c’est ça. à voir aussi si faire @chatrooms =Chatroom.all c’est opti car charger toutes les chatroom pour les filtrer va occuper de la mémoire et faire un gros temps de chargement pour rien
+tu peux peut être faire @chatrooms =Chatroom.where(:helper_id current_user_id) directement et après faire @chatrooms.foreach %>
+<%#
+
+Request.find(Chatroom.request.id)
+trouvez l'id de la requete qui est dans une chatroom
+Ensuite la passez dans le chatroom passez %>
 
 <div class="chatrooms-index">
   <% @chatrooms.each do |chatroom| %>
-    <%= link_to chatroom_path(chatroom) do %>
-      <div class="chatroom">
-
-        <p>Chatroom: <%= chatroom.id %></p>
-      </div>
+    <% if chatroom.helper_id == current_user.id || chatroom.needer_id == current_user.id %>
+      <% request_id = chatroom.request.id %>
+      <%= link_to request_chatroom_path(chatroom, request_id: request_id) do %>
+        <div class="chatroom">
+          <p>Chatroom: <%= chatroom.id %></p>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
