@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def mean 
+    @user = current_user
     if Review.where(reviewee_id: current_user.id) != []
       @reviews = Review.where(reviewee_id: current_user.id)
       ratings = []
