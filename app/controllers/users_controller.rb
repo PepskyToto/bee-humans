@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :authenticate_user!
   before_action :check_user, only: [:edit, :update]
-  before_action :mean
+  before_action :mean, except: [:index]
 
   def  index
     @users = User.all
@@ -11,22 +11,28 @@ class UsersController < ApplicationController
   end
 
   def mean 
-    @user = current_user
-    if Review.where(reviewee_id: current_user.id) != []
-      @reviews = Review.where(reviewee_id: current_user.id)
+    if Review.where(reviewee_id: @user.id) != []
+      @reviews = Review.where(reviewee_id: @user.id)
       ratings = []
       @reviews.each do |review|
         ratings << review.rating
       end
       average_rating = ratings.sum / ratings.length.to_f
       @user.average_rating = average_rating.truncate(1)
+      @user.save
     end
   end
 
   def show
-    @user = current_user
-    @reviews = Review.where(reviewee_id: @user.id)
-    mean
+    if params["triggered_by_index"]
+      @user = User.find(params["id"])
+      @reviews = Review.where(reviewee_id: @user.id)
+      mean
+    else
+      @user = current_user
+      @reviews = Review.where(reviewee_id: @user.id)
+      mean
+    end
   end
 
   def edit

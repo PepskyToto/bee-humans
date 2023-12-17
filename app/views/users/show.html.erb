@@ -27,8 +27,9 @@
       <div class="skill"><%= skill.category %></div>
     <% end %>
   </div>
-
+<% if current_user.id == @user.id %>
   <%= link_to "Modifier le profil ou les compétences", edit_user_registration_path, class: "btn btn-primary" %>
+<% end %>
 </div>
 
   <%# <div class="reviews">

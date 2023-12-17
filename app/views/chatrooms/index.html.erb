@@ -4,7 +4,7 @@
       <p>Vos discussions avec des needers:</p>
     <% end %>
   <% @chatrooms.each do |chatroom| %>
-    <% if chatroom.helper_id == current_user.id %>
+    <% if chatroom.helper_id == current_user.id && chatroom.status != 6%>
       <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id) do %>
         <div class="chatroom">
           <p>Votre discussion avec <%= User.find(chatroom.needer_id).username %></p>
