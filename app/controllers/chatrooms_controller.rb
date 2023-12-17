@@ -76,8 +76,11 @@ end
 
 
 #status meaning
-# 1: chatbox initié et needer doit accepter ou refuser le service.
-# 2: le user a accepté , chatbox débloqué , le service est pending
-# 3: le service a été rendu , review débloqué.
-# 4: le user a refusé, chatbox bloqué.
+#1: chatbox initié et needer doit accepter ou refuser le service. ( user journey : bouton helper)
+#2: le user a accepté , chatbox débloqué , le service est pending
+#3: chatbox initié et helper doit accepter ou refuser le service. ( user journey : bouton needer)
+#4: le user a refusé, chatbox bloqué.
 #5: le user a accepté, mais le service n'a jamais été rendu.
+#6: le user a été noté. 
+#7: le needer a accepté le service pour un autre helper. la chatroom 7 existe toujours et 
+# repasse en status 1 si l'autre helper n'a pas accepté le service (status 5)
