@@ -30,7 +30,7 @@ class ChatroomsController < ApplicationController
       @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre service!")
       #first_message: true, si first_message : partiel _firstmessage
       if @message.save
-        redirect_to request_chatroom_path(@request.id, @chatroom)      
+        redirect_to request_chatroom_path(@request.id, @chatroom)
       else
         render :back
       end
@@ -41,7 +41,7 @@ class ChatroomsController < ApplicationController
 
   def update
     @chatroom = Chatroom.find_by(id: params[:id])
-    
+
     if params["valid"] == "true"
       @chatroom.status = 2
       @chatroom.save
@@ -61,20 +61,7 @@ class ChatroomsController < ApplicationController
       render :back
     end
   end
-
-
-  private
-
-  def chatroom_params
-    params.require(:chatroom).permit(:request_id, :helper_id, :needer_id)
-  end
-
-  def authenticate_user!
-
-  end
 end
-
-
 #status meaning
 #1: chatbox initié et needer doit accepter ou refuser le service. ( user journey : bouton helper)
 #2: le user a accepté , chatbox débloqué , le service est pending
