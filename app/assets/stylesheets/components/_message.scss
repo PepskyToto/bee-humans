@@ -1,0 +1,52 @@
+/* Style de la zone de message entrant */
+.receiver-style {
+  background-color: #b3b3b3; /* Couleur de fond pour les messages reçus sur WhatsApp */
+  color: #ffffff; /* Couleur du texte pour les messages reçus */
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 70%;
+}
+
+.sender-style {
+  background-color: #007AFF; /* Couleur de fond pour les messages envoyés sur WhatsApp */
+  color: #ffffff; /* Couleur du texte pour les messages envoyés */
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  align-self: flex-end; /* Aligner le message à droite pour les messages sortants */
+}
+
+/* Style de la zone d'envoi de message */
+.message-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #EFEFEF; /* Ligne de séparation similaire à WhatsApp */
+  font-size: 16px;
+  outline: none;
+}
+
+/* Style du bouton d'envoi */
+.send-button {
+  background-color: #007AFF; /* Couleur du bouton d'envoi similaire à WhatsApp */
+  color: #fff; /* Couleur du texte du bouton d'envoi */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style pour les conteneurs de messages */
+.message-container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+/* Style pour l'affichage du nom d'utilisateur */
+.username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
