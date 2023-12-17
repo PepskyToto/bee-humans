@@ -2,9 +2,14 @@
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
   <h1>#<%= @chatroom.id %></h1>
   <% if @chatroom.messages[0].first_message == true %>
-  <p class="messages" data-chatroom-subscription-target="messages"><%= @chatroom.messages[0].content %></p>
+  <p class="messages"><%= @chatroom.messages[0].content %></p>
   <p>Le service a été refusé.</p>
 
+  <%= render "chatrooms"%>
+
+  <div class="messages" data-chatroom-subscription-target="messages">
+    
+  </div>
   <% else %>
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
