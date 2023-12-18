@@ -16,7 +16,9 @@ class RequestsController < ApplicationController
     @request.date = Date.today
     #@skill = Skill.find(params[:request][:skill])
     @request.skill_id = params[:request][:skill]
-    if @request.save
+    p "in create"
+    if @request.save!
+      p "in save"
       redirect_to users_path
       #redirect_to user_path
     else
@@ -31,7 +33,7 @@ class RequestsController < ApplicationController
         @chatroom = Chatroom.new()
         @request = Request.find(params["id"])
         @chatroom.needer_id = current_user.id # current_user est le needer
-        @chatroom.helper_id = user_id 
+        @chatroom.helper_id = user_id
         @chatroom.request_id = @request.id
         @chatroom.status = 3
         if @chatroom.save
