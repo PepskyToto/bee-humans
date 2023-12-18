@@ -1,35 +1,71 @@
+
 <% @requests.reject { |request| request.distance_to_user(current_user).nan? }
             .sort_by { |request| request.distance_to_user(current_user) }
             .each do |request| %><% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+ <%# Parcours des demandes triées par distance par rapport à l'utilisateur actuel %>
+
+
+<% @requests.sort_by { |request| request.distance_to_user(current_user) }.each do |request| %>
+  <%# Recherche de la chatroom associée à la demande pour l'utilisateur actuel %>
+  <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+
+  
+
+  <%# Vérification si l'utilisateur de la demande n'est pas l'utilisateur actuel %>
   <% if request.user_id != current_user.id %>
-    <div class="card mt-4">
+    <div class="card mt-4 row mx-auto  col-12 col-md-6">
       <div class="card-body d-flex align-items-center">
-        <div class="user-rating me-3" style="width: 80px;">
-          <%= link_to user_path(request.user, triggered_by_index: :true), class: "text-decoration-none text-dark" do %>
-            <% if request.user.average_rating %>Cet utilisateur à une note moyenne de :
-              <div class="average-rating-bubble">
-                <strong><%= request.user.average_rating %></strong>
-              </div>
-            <% else %>
-              <p>Cet utilisateur n'a pas encore d'avis</p>
-            <% end %>
+        <div class="user-infos">
+                <p class="card-text"><strong> <%= link_to(request.user.username, user_path(request.user, triggered_by_index: :true), class: "text-decoration-none user-name") %></strong></p>
+
+
+        <div class="profile-picture">
+          <% if @user.present? && @user.profile_picture.present? %>
+            <img src="<%= asset_path(@user.profile_picture) %>" alt="Photo de profil de <%= @user.username %>" class="mini-profile-pic" />
+          <% else %>
+            <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="mini-profile-pic" />
           <% end %>
         </div>
 
-        <div class="request-info col-8">
-          <% if @chatroom %>
-            <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
-          <% else %>
-            <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
-          <% end %>
 
-          <p class="card-text"><strong>Type de compétence:</strong> <span style="color: #6b0f45;"><%= request.skill.category %></span></p>
+
+        <div class="user-rating me-3">
+          <%= link_to user_path(request.user, triggered_by_index: :true), class: "text-decoration-none text-dark" do %>
+            <%# Vérification de la note moyenne de l'utilisateur de la demande %>
+          <div class="average-rating-bubble">
+            <% if request.user.average_rating %>
+                <p class="average-rate"><strong><%= request.user.average_rating %>/5</strong></p>
+            <% else %>
+              <p class="average-rate"> <strong>0/5</strong></p>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+
+
+          <%# Vérification si une chatroom existe pour cette demande %>
+          <div class="go-chatroom">
+            <% if @chatroom %>
+              <%= link_to "Messagerie", request_chatroom_path(request.id, @chatroom.id), class: "btn btn-primary"%>
+            <% else %>
+              <%= link_to "Messagerie", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          </div>
+
+
+
+
+          <div class="request-info">
+          <p class="card-text"><span class="category"><%= request.skill.category %></span></p>
           <p class="card-text"><%= request.description %></p>
-          <p class="card-text"><strong>Posté par :</strong> <%= link_to(request.user.username, user_path(request.user, triggered_by_index: :true), class: "text-decoration-none text-dark") %></p>
           <p class="card-text"><strong>Date :</strong> <%= request.created_at.strftime('%B %e, %Y %l:%M %p') %></p>
           <p class="card-text"><strong>Localisation :</strong> <%= request.address %></p>
+          <%# Vérification des coordonnées de l'utilisateur actuel %>
           <% if current_user.latitude && current_user.longitude %>
+            <%# Calcul de la distance entre la demande et l'utilisateur actuel %>
             <% distance = request.distance_to_user(current_user) %>
+            <%# Affichage de la distance si elle existe %>
             <% if distance %>
               <p class="card-text"><strong>Distance : </strong>à <%= distance.round(2) %> km de vous</p>
             <% end %>
