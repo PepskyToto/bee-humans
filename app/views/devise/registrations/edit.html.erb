@@ -1,45 +1,52 @@
-<h2>Modifier <%= resource_name.to_s.humanize %></h2>
+<div class="container-modify">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <h2>Modifier <%= resource_name.to_s.humanize %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true, label: "Adresse email" %>
-    <%= f.input :username, required: true, label: "Nom d'utilisateur" %>
-    <%= f.input :address, required: true, label: "Adresse" %>
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true, label: "Adresse email" %>
+          <%= f.input :username, required: true, label: "Nom d'utilisateur" %>
+          <%= f.input :address, required: true, label: "Adresse" %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Actuellement en attente de confirmation pour : <%= resource.unconfirmed_email %></p>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Actuellement en attente de confirmation pour : <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <%= f.input :password,
+                      hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
+                      required: false,
+                      input_html: { autocomplete: "new-password" },
+                      label: "Mot de passe" %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" },
+                      label: "Confirmation du mot de passe" %>
+          <%= f.input :current_password,
+                      hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
+                      required: true,
+                      input_html: { autocomplete: "current-password" },
+                      label: "Mot de passe actuel" %>
+        </div>
+
+        <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
+          <%= b.check_box %>
+          <%= b.label %>
+        <% end %>
+
+
+      <div class="btn btn-success btn-maj">
+        <%= f.button :submit, "Mettre à jour" %>
+      </div>
     <% end %>
 
-    <%= f.input :password,
-                hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
-                required: false,
-                input_html: { autocomplete: "new-password" },
-                label: "Mot de passe" %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" },
-                label: "Confirmation du mot de passe" %>
-    <%= f.input :current_password,
-                hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
-                required: true,
-                input_html: { autocomplete: "current-password" },
-                label: "Mot de passe actuel" %>
+    <div>
+      <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete, class: "delete-account" %>
+    </div>
+
+    <%= link_to "Retour en arrière", :back %>
+  </div>
 </div>
-
-    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
-      <%= b.check_box %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Mettre à jour" %>
-  </div>
-<% end %>
-
-
-<div>Mécontent ? <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete %></div>
-
-<%= link_to "Retour en arrière", :back %>
+</div>
