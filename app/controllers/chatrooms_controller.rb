@@ -77,5 +77,5 @@ end
 #ajouter une colonne lu default false a model message
 #Quand on rentre dans le show de chatroom , on récupère les messages envoyé par l'autre et on les passe en lu.
 #dans le html, si User.requests.chatroom.messages.where(user_id: != current_user.id).find(read: :false) != 0, alors count +=1 
-# dans le html, si count !=0, icone de messagerie devient rouge + rond avec @count.value dedans
+#dans le html, si count !=0, icone de messagerie devient rouge + rond avec @count.value dedans
 #User.last.requests.last.chatroom.messages.last
