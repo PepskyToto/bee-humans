@@ -31,6 +31,34 @@
   <%= link_to "Modifier le profil ou les compétences", edit_user_registration_path, class: "btn btn-primary" %>
 <% end %>
 </div>
+<% if current_user.id == @user.id %>
+<h1>Mes requêtes en cours</h1>
+  <% else %>
+<h1>Requêtes en cours de <%= @user.username %></h1>
+<% end %>
+<p><% @user.requests.each do|request| %></p>
+<% if request.chatroom.status %>
+<% if request.chatroom.status != 6 %>
+<p><%= request.title %></p>
+<p><%= request.description %></p>
+<p><%=  request.date%></p>
+<p><%= Skill.find(request.skill_id).category %></p>
+  <% if current_user.id == @user.id %>
+  <%= link_to "Modifier ma requête",edit_request_path(request, triggered_by_profile: true ) %>
+  <% else %>
+          <div class="request-info col-8">
+          <% if @chatroom %>
+            <%= link_to "allez à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
+          <% else %>
+            <%= link_to "allez à la chatroom", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
+          <% end %>
+          </div>
+  <% end %>
+
+<p></p>
+<% end %>
+<% end %>
+<% end %>
 
   <%# <div class="reviews">
     <h2>Avis</h2>
