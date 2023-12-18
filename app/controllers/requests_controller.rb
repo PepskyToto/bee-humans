@@ -14,11 +14,7 @@ class RequestsController < ApplicationController
     @request.user_id = current_user.id
     @request.address = current_user.address
     @request.date = Date.today
-    #@skill = Skill.find(params[:request][:skill])
-    @request.skill_id = params[:request][:skill]
-    p "in create"
     if @request.save!
-      p "in save"
       redirect_to users_path
       #redirect_to user_path
     else
@@ -50,7 +46,7 @@ class RequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:request).permit(:description)
+    params.require(:request).permit(:description, :title, :skill_id)
   end
 
 end
