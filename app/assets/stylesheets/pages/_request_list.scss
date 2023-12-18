@@ -1,0 +1,61 @@
+.card  {
+  background-color: $beige;
+  width: 70vw;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.average-rate {
+  align-items: center;
+  font-size: 3vh;
+  color: $orange;
+}
+
+.profile-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-profile-pic {
+  width: 10vh;
+  height: 10vh;
+  clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  display: flex;
+  position: relative;
+  align-items: center;
+  object-fit: cover;
+  justify-content: center;
+}
+
+
+.user-infos {
+  align-items: center;
+  justify-content: center;
+  margin: 3vh;
+}
+
+.user-rating {
+  text-align: center;
+}
+
+
+/* Utilisez une media query pour les petits écrans (par exemple, max-width: 767px) */
+@media (max-width: 767px) {
+  .card-body {
+    /* Définissez la mise en page en colonne */
+    flex-direction: column;
+    align-items: center; /* Facultatif : centrez les éléments horizontalement */
+    text-align: left; /* Facultatif : centrez le texte horizontalement */
+  }
+}
