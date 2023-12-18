@@ -1,0 +1,12 @@
+production:
+  cloud_name: Aurore_B34
+  api_key: 897151366279382
+  api_secret: SGlcu8XCIR0C7Wdg0PnhwugS2Ds
+development:
+  cloud_name: Aurore_B34
+  api_key: 897151366279382
+  api_secret: SGlcu8XCIR0C7Wdg0PnhwugS2Ds
+test:
+  cloud_name: Aurore_B34
+  api_key: 897151366279382
+  api_secret: SGlcu8XCIR0C7Wdg0PnhwugS2Ds

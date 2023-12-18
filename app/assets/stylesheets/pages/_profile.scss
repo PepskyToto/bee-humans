@@ -1,0 +1,56 @@
+.profile-pic {
+  width: 30vh;
+  height: 30vh;
+  clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  display: block;
+  position: relative;
+  object-fit: cover;
+}
+
+.status {
+  justify-content: flex-end;
+  margin-bottom: 5vh;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  h1 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        margin: 5vh;
+  }
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100vw;
+}
+
+.skill {
+  background-color: $orange;
+  color: $light-beige;
+  padding: 2% 2%;
+  margin: 5px 5px;
+  border-radius: 30px;
+  text-align: center;
+  width: 50vw;
+}
+
+.skills-container {
+  h2 {
+    text-align: center;
+    font-weight: bold;
+  }
+}
