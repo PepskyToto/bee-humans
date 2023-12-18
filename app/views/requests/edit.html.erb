@@ -1,0 +1,122 @@
+<% request = Request.find(params["id"]) %>
+<p><%= request.title %></p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modif_title">
+  Modifier le titre
+</button>
+
+<p><%= request.description %></p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modif_description">
+  Modifier la description
+</button>
+
+<p><%= Skill.find(request.skill_id).category %></p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modif_skill">
+  Modifier la compétence recherchée
+</button>
+<p><%= request.address %></p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modif_address">
+  Modifier l'addresse
+</button>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal Title-->
+<div class="modal fade" id="modif_title" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modification de votre requête</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for request, html: { class: "mt-3" } do |form| %>
+        <%= form.input :title, label: "Title" %>
+        <%= hidden_field_tag 'triggered_by_title', 'true' %>
+        
+
+      </div>
+      <div class="modal-footer">
+      <%= form.button :submit, "Modifier votre titre", class: "resa-button btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Description-->
+<div class="modal fade" id="modif_description" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modification de votre requête</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for request, html: { class: "mt-3" } do |form| %>
+          <%= form.input :description, label: "Description" %>
+        <%= hidden_field_tag 'triggered_by_description', 'true' %>
+        
+
+      </div>
+      <div class="modal-footer">
+      <%= form.button :submit, "Modifier votre description", class: "resa-button btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Skill-->
+<div class="modal fade" id="modif_skill" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modification de votre requête</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for request, html: { class: "mt-3" } do |form| %>
+        <%= form.input :skill, collection: Skill.all, label_method: :category, value_method: :id, prompt: 'Sélectionner une compétence' %>
+        <%= hidden_field_tag 'triggered_by_skill', 'true' %>
+        
+
+      </div>
+      <div class="modal-footer">
+      <%= form.button :submit, "Modifier votre description", class: "resa-button btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Address-->
+<div class="modal fade" id="modif_address" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modification de votre requête</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for request, html: { class: "mt-3" } do |form| %>
+        <%= form.input :address, label: "Address" %>
+        <%= hidden_field_tag 'triggered_by_address', 'true' %>
+        
+
+      </div>
+      <div class="modal-footer">
+      <%= form.button :submit, "Modifier votre adresse", class: "resa-button btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

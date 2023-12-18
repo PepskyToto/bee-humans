@@ -42,6 +42,42 @@ class RequestsController < ApplicationController
         redirect_to chatrooms_path, notice: "Vous avez créé #{count} discussion"
       end
     end
+    
+    if params["triggered_by_title"]
+      @request = Request.find(params["id"])
+      @request.title = params["request"]["title"]
+      @request.save
+      if @request.save
+        redirect_to edit_request_path, notice: "le titre a été modifié."
+      end
+    end
+
+    if params["triggered_by_description"]
+      @request = Request.find(params["id"])
+      @request.description = params["request"]["description"]
+      @request.save
+      if @request.save
+        redirect_to edit_request_path, notice: "la description a été modifiée."
+      end
+    end
+
+    if params["triggered_by_skill"]
+      @request = Request.find(params["id"])
+      @request.skill_id = params["request"]["skill"]
+      @request.save
+      if @request.save
+        redirect_to edit_request_path, notice: "la compétence recherchée a été modifiée."
+      end
+    end
+
+    if params["triggered_by_address"]
+      @request = Request.find(params["id"])
+      @request.address = params["request"]["address"]
+      @request.save
+      if @request.save
+        redirect_to edit_request_path, notice: "l'adresse a été modifiée."
+      end
+    end
   end
 
   private

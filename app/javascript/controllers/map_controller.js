@@ -20,22 +20,17 @@ export default class extends Controller {
     this.#fitMapToMarkers();
   };
 
-
+  
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html);
-      const customMarker = document.createElement("div");
-      customMarker.innerHTML = marker.marker_html;
-      console.log("Popup HTML:", marker.info_window_html);
-
+      const customMarker = document.createElement("div")
+    customMarker.innerHTML = marker.marker_html
       new mapboxgl.Marker(customMarker)
-        .setLngLat([marker.lng, marker.lat])
-        .setPopup(popup)  // Assurez-vous d'ajouter le popup ici
+        .setLngLat([ marker.lng, marker.lat ])
         .addTo(this.map);
     });
   }
-
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
@@ -44,3 +39,4 @@ export default class extends Controller {
   }
 
 }
+
