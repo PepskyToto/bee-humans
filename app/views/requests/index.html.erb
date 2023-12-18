@@ -1,5 +1,6 @@
-<% @requests.sort_by { |request| request.distance_to_user(current_user) }.each do |request| %>
-<% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+<% @requests.reject { |request| request.distance_to_user(current_user).nan? }
+            .sort_by { |request| request.distance_to_user(current_user) }
+            .each do |request| %><% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
   <% if request.user_id != current_user.id %>
     <div class="card mt-4">
       <div class="card-body d-flex align-items-center">

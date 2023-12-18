@@ -68,3 +68,8 @@ review2 = Review.create( rating: 5, description: "mon jean est réparé!", revie
 puts "Reviews created successfully"
 
 puts "Seed completed!"
+
+
+# pour la seed avec photo user (ou request)
+#file = URI.open(lien cloudinary ou internet)
+#instanceUser.photo.attach(io: file, filename: nom, content_type: 'image/png ou jpg ou autre')
