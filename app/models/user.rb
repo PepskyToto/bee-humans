@@ -17,4 +17,5 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
+  has_one_attached :profile_picture
 end
