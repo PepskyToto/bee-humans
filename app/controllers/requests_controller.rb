@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
   end
 
   def update
+    
     if params["triggered_by_needer"] # si on arrive dans la méthode update par la liste de helper
       params["request"]["user_ids"].each do |user_id| # pour chaque user_id fait
         @count = 0 # système de verification , utilisé en fin de méthode, pour s'assurer que il y a eu autant de chatroom créer que d'utilisateur coché
@@ -82,7 +83,7 @@ class RequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:request).permit(:description, :title, :skill_id)
+    params.require(:request).permit(:description, :title, :skill_id, :photo)
   end
 
 end

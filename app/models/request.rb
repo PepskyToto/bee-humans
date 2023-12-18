@@ -4,6 +4,7 @@ class Request < ApplicationRecord
   has_one :chatroom
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  has_one_attached :photo
 
   def distance_to_user(user)
     return nil if user.latitude.nil? || user.longitude.nil? || self.user.latitude.nil? || self.user.longitude.nil?
