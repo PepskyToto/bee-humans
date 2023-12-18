@@ -1,0 +1,30 @@
+
+.skillz {
+  background-color: $orange;
+  color: $light-beige;
+  padding: 2% 2%;
+  margin: 5px 5px;
+  border-radius: 30px;
+  text-align: center;
+  width: 20vw;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.one-card {
+  background-color: $beige;
+  // margin: 30vh;
+  border-radius: 1em;
+  margin: 3vh;
+  padding: 2vh;
+}
+
+.btn-margin {
+  align-items: end;
+  margin-top: 2vh;
+  justify-content: flex-end;
+  display: flex;
+}
