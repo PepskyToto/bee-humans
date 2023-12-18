@@ -14,8 +14,6 @@ class RequestsController < ApplicationController
     @request.user_id = current_user.id
     @request.address = current_user.address
     @request.date = Date.today
-    @request.latitude = 0
-    @request.longitude = 0
     if @request.save!
       redirect_to users_path
       #redirect_to user_path
