@@ -1,0 +1,40 @@
+
+
+.container-modify {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+  }
+}
+
+
+.delete-account {
+  color: $orange; /* Couleur du texte */
+  // padding: 10px 20px; /* Espacement intérieur (haut/bas, gauche/droite) */
+  border: none; /* Supprime la bordure */
+  // border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur au survol */
+  text-decoration: none; /* Supprime les soulignements */
+  background-color: transparent;
+
+}
+
+/* Styles pour le bouton de suppression de compte au survol */
+.delete-account:hover {
+  color: $aubergine; /* Couleur du texte au survol */
+}
+
+.btn-maj {
+  width: 100%;
+  color: $light-beige;
+  margin: 5vh 0vh;
+}
