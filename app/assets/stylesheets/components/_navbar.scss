@@ -71,6 +71,25 @@
   margin-right: 3vh;
 }
 
+.honeycomb-mail-unread {
+  width: 6vh;
+  align-items: center;
+  flex: 1;
+  margin-right: 3vh;
+  color: rgb(255, 118, 118);
+}
+
+.message-non-lu{
+  color: white;
+}
+
+.container-unread{
+  position: relative;
+  right: 49px;
+  top: 21px;
+  font-size: smaller;
+}
+
 .dropdown-item {
   color: $orange;
 }

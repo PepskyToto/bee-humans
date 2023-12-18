@@ -10,6 +10,16 @@ class ChatroomsController < ApplicationController
     @user = current_user
     @review = Review.new
     @chatroom = Chatroom.find(params[:id])
+    #@messages_read = Message.where(chatroom_id: 114).where(user_id: @chatroom.helper_id)
+    if current_user.id == @chatroom.needer_id
+      @messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.helper_id)
+    else
+      @messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.needer_id)
+    end
+    @messages_read.each do |message|
+      message.read = true
+      message.save
+    end
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
   end
