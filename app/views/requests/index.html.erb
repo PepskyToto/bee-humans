@@ -24,7 +24,7 @@
 
           <p class="card-text"><strong>Type de compétence:</strong> <span style="color: #6b0f45;"><%= request.skill.category %></span></p>
           <p class="card-text"><%= request.description %></p>
-          <p class="card-text"><strong>Posté par :</strong> <%= request.user.username %></p>
+          <p class="card-text"><strong>Posté par :</strong> <%= link_to(request.user.username, user_path(request.user, triggered_by_index: :true), class: "text-decoration-none text-dark") %></p>
           <p class="card-text"><strong>Date :</strong> <%= request.created_at.strftime('%B %e, %Y %l:%M %p') %></p>
           <p class="card-text"><strong>Localisation :</strong> <%= request.address %></p>
           <% if current_user.latitude && current_user.longitude %>
