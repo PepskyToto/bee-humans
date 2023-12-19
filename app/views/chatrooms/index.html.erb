@@ -1,31 +1,78 @@
-
+<div class="chatroom-container">
 <div class="chatrooms-index">
     <% if Chatroom.find_by_helper_id(current_user.id) %>
       <p>Vos discussions avec des needers:</p>
     <% end %>
   <% @chatrooms.each do |chatroom| %>
-    <% if chatroom.helper_id == current_user.id && chatroom.status != 6%>
-      <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id) do %>
-        <div class="chatroom">
-          <p>Votre discussion avec <%= User.find(chatroom.needer_id).username %></p>
+    <% if chatroom.helper_id == current_user.id && chatroom.status != 6 && chatroom.status != 4%>
+      <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id),class: "link-to-stuff" do %>
+        <div class="chatroom-index">
+          <div class="chatroom-boxes">
+            <div class="row">
+              <div class="d-flex justify-content-center col-2", style = "min-width: 110px;">
+                <% @user_message = User.find(chatroom.needer_id)%>
+                <% if @user_message.photo.attached? %>
+                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
+                    <div class="circle">
+                      <span class="number">1</span>
+                    </div>
+                  <% else %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
+                <% end %>
+                <% end %>
+              </div>
+            <div class="col">
+              <p><strong><%= @user_message.username %></strong></p>
+              <div class="message">
+              <p><%= chatroom.messages.last.content %></p>
+              </div>
+            <!--
+            <p> <strong><%= User.find(chatroom.messages.last.user_id).username %></strong> : <%= chatroom.messages.last.content %></p>
+            -->
+            </div>
+          </div>
         </div>
       <% end %>
-  
-        <p> <strong><%= User.find(chatroom.messages.last.user_id).username %></strong> : <%= chatroom.messages.last.content %></p>
-
     <% end %>
   <% end %>
   <% if Chatroom.find_by_needer_id(current_user.id) %>
       <p>Vos discussions avec des helper:</p>
   <% end %>
     <% @chatrooms.each do |chatroom| %>
-    <% if chatroom.needer_id == current_user.id %>
-      <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id) do %>
-        <div class="chatroom">
-          <p>Votre discussion avec <%= User.find(chatroom.helper_id).username %></p>
+    <% if chatroom.needer_id == current_user.id && chatroom.status != 6 %>
+        <%= link_to request_chatroom_path(chatroom, request_id: chatroom.request_id), class: "link-to-stuff" do %>
+        <div class="chatroom-index">
+          <div class="chatroom-boxes">
+            <div class="row">
+              <div class="d-flex justify-content-center col-2", style = "min-width: 110px; padding-left: 20px;">
+                <% @user_message = User.find(chatroom.helper_id)%>
+                <% if @user_message.photo.attached? %>
+                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
+                    <div class="circle">
+                      <span class="number">1</span>
+                    </div>
+                  <% else %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
+                <% end %>
+                <% end %>
+              </div>
+            <div class="col">
+              <p><strong><%= @user_message.username %></strong></p>
+              <div class="message">
+              <p><%= chatroom.messages.last.content %></p>
+              </div>
+            <!--
+            <p> <strong><%= User.find(chatroom.messages.last.user_id).username %></strong> : <%= chatroom.messages.last.content %></p>
+            -->
+            </div>
+          </div>
         </div>
       <% end %>
-        <p> <strong><%= User.find(chatroom.messages.last.user_id).username %></strong> : <%= chatroom.messages.last.content %></p>
     <% end %>
   <% end %>
+</div>
+</div>
+</div>
 </div>
