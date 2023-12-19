@@ -1,1 +1,5 @@
-<%= image_tag "placeholder.jpg", class: "rounded-image", alt: "Logo" %>
+<% if user && user.photo.attached? %>
+  <%= cl_image_tag user.photo.key, class: "rounded-image", alt: "Logo" %>
+<% else %>
+  <%= image_tag "placeholder.jpg", class: "rounded-image", alt: "Logo" %>
+<% end %>
