@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @request = Request.where(user_id: current_user.id).last
   end
 
-  def mean 
+  def mean
     if Review.where(reviewee_id: @user.id) != []
       @reviews = Review.where(reviewee_id: @user.id)
       ratings = []
