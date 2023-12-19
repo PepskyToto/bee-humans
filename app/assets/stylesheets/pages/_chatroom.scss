@@ -1,0 +1,56 @@
+.rounded-image-chatroom-unread {
+  border: 4px solid #B24A4A;
+  border-radius: 50%;
+  background-size: cover;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 80px;
+  height: 80px; 
+}
+
+.rounded-image-chatroom {
+  border: 4px solid #42032C;
+  border-radius: 50%;
+  background-size: cover;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 80px;
+  height: 80px; 
+}
+
+.chatroom-boxes {
+  background-color: #E6D2AA;
+  border-radius: 20px;
+  margin: 1vh;
+  padding: 1vh;
+  overflow: hidden; /* Empêcher le contenu de déborder */
+  transition : background-color 0.5s;
+  max-height: 100px;
+}
+
+.message{
+  position: relative;
+  top: -10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; // modèle de boite utilisé
+  -webkit-line-clamp: 2; //propriété propre à webkit, defini le nombre de lignes max à afficher.
+  -webkit-box-orient: vertical; // orientation
+  max-height: 3.6em; // max-height avant de mettre ...
+}
+.chatroom-boxes p{
+  position: relative;
+  top: -2px;
+  text-overflow: ellipsis;
+}
+.link-to-stuff{
+  text-decoration: none;
+}
+
+.chatroom-boxes:hover {
+  background-color: #d8c59f;
+}
+.chatroom-container{
+  width: 97%;
+  margin : 0 auto; 
+}

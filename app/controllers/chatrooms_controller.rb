@@ -10,7 +10,7 @@ class ChatroomsController < ApplicationController
     @user = current_user
     @review = Review.new
     @chatroom = Chatroom.find(params[:id])
-    #@messages_read = Message.where(chatroom_id: 114).where(user_id: @chatroom.helper_id)
+    #@messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.helper_id)
     if current_user.id == @chatroom.needer_id
       @messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.helper_id)
     else
@@ -19,6 +19,7 @@ class ChatroomsController < ApplicationController
     @messages_read.each do |message|
       message.read = true
       message.save
+      raise
     end
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
@@ -37,7 +38,7 @@ class ChatroomsController < ApplicationController
     @chatroom.status = 1
     if @chatroom.save
       # Créez un message automatique après la création de la chatbox
-      @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre service!")
+      @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre un service en #{Skill.find(@request.skill_id).category}}!")
       #first_message: true, si first_message : partiel _firstmessage
       if @message.save
         redirect_to request_chatroom_path(@request.id, @chatroom)
