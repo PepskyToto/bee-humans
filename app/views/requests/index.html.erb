@@ -1,7 +1,12 @@
+
+<% @requests.reject { |request| request.distance_to_user(current_user).nan? }
+            .sort_by { |request| request.distance_to_user(current_user) }
+            .each do |request| %><% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
 <%# Parcours des demandes triées par distance par rapport à l'utilisateur actuel %>
-<% @requests.sort_by { |request| request.distance_to_user(current_user) }.each do |request| %>
   <%# Recherche de la chatroom associée à la demande pour l'utilisateur actuel %>
   <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
+
+  
 
   <%# Vérification si l'utilisateur de la demande n'est pas l'utilisateur actuel %>
   <% if request.user_id != current_user.id %>

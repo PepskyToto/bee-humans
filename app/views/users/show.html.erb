@@ -1,3 +1,4 @@
+
 <%# Mettre la pdp de aurore en image de profil %>
 <div class="user-profile justify-content-center d-flex">
 <h1>
@@ -9,9 +10,9 @@
 <% end %></h1>
 
   <div class="profile-picture">
-    <% if @user.profile_picture.present? %>
-      <img src="<%= asset_path(@user.profile_picture) %>" alt="Photo de profil de <%= @user.username %>" class="profile-pic" />
-    <% else %>
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic" %>    
+      <% else %>
       <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
     <% end %>
   </div>
@@ -58,7 +59,11 @@
       <p><%= request.description %></p>
       <h5 style="font-weight: bold;">Date :</h5>
       <p><%= request.date %></p>
+
       <h5 style="font-weight: bold;">Compétence :</h5>
+
+      <p><%= cl_image_tag request.photo.key, height: 300, width: 400, crop: :fill %></p>
+
       <p><%= Skill.find(request.skill_id).category %></p>
       <% if current_user.id == @user.id %>
  <div class="text-center">

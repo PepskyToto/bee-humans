@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
+  has_one_attached :photo
   validates :username, presence: true
   validates :address, presence: true
   has_many :reviewer_review, class_name: 'Review', foreign_key: 'reviewer_id', dependent: :destroy
@@ -17,5 +17,5 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
-  has_one_attached :profile_picture
+  
 end
