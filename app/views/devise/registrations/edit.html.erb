@@ -1,4 +1,5 @@
-<div class="container-modify">
+
+<%= link_to raw('<i class="fas fa-left-long"></i>  Retour'), :back %>
   <div class="row justify-content-center">
     <div class="col-sm-6">
       <h2>Modifier <%= resource_name.to_s.humanize %></h2>
@@ -10,31 +11,30 @@
           <%= f.input :email, required: true, autofocus: true, label: "Adresse email" %>
           <%= f.input :username, required: true, label: "Nom d'utilisateur" %>
           <%= f.input :address, required: true, label: "Adresse" %>
+          <%= f.input :description, required: true, label: "Description" %>
+
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Actuellement en attente de confirmation pour : <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <%= f.input :password,
-                      hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
-                      required: false,
-                      input_html: { autocomplete: "new-password" },
-                      label: "Mot de passe" %>
-          <%= f.input :password_confirmation,
-                      required: false,
-                      input_html: { autocomplete: "new-password" },
-                      label: "Confirmation du mot de passe" %>
           <%= f.input :current_password,
-                      hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
+                      hint: "Rentrer votre mot de passe actuel pour confirmer les changements",
                       required: true,
                       input_html: { autocomplete: "current-password" },
                       label: "Mot de passe actuel" %>
         </div>
         <%= f.input :photo, as: :file, label: 'Photo de profil' %>
+        <%= f.input :password, required: false, input_html: { autocomplete: "new-password" }, label: "Nouveau mot de passe" %>
+        <%= f.input :password_confirmation, required: false, input_html: { autocomplete: "new-password" }, label: "Confirmer le nouveau mot de passe" %>
+
         <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
-          <%= b.check_box %>
-          <%= b.label %>
-        <% end %>
+            <div class="checkbox">
+              <%= b.check_box %>
+              <%= b.label %>
+            </div>
+          <% end %>
+
 
 
       <div class="btn btn-success btn-maj">
@@ -46,7 +46,7 @@
       <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete, class: "delete-account" %>
     </div>
 
-    <%= link_to "Retour en arrière", :back %>
+
   </div>
 </div>
 </div>

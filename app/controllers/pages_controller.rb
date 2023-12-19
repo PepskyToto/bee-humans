@@ -4,15 +4,24 @@ class PagesController < ApplicationController
   def home
     @users = User.all
     if current_user
-    @nearby_users = User.near([current_user.latitude, current_user.longitude], 10) # 10 kilomètres de distance (ajustez selon vos besoins)
-    @markers = @nearby_users.map do |user|
+      @nearby_users = User.near([current_user.latitude, current_user.longitude], 10) # 10 kilomètres de distance (ajustez selon vos besoins)
+      @markers = @nearby_users.map do |user|
       {
         lat: user.latitude,
         lng: user.longitude,
         info_window_html: render_to_string(partial: "user_info", locals: { user: user }),
-        marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker", locals: { user: user})
       }
+      end
+    else
+      @markers = @users.map do |user|
+        {
+          lat: user.latitude,
+          lng: user.longitude,
+          info_window_html: render_to_string(partial: "user_info", locals: { user: user }),
+          marker_html: render_to_string(partial: "marker", locals: { user: user})
+        }
+      end
     end
-  end
   end
 end

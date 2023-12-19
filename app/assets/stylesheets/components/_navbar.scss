@@ -109,3 +109,19 @@
     justify-content: center;
   }
 }
+
+.profile-pic-navbar {
+  width: 8vh;
+  height: 8vh;
+  clip-path: polygon(
+    50% 0%,   /* Sommet supérieur */
+    100% 25%, /* Sommet supérieur droit */
+    100% 75%, /* Sommet inférieur droit */
+    50% 100%, /* Sommet inférieur */
+    0% 75%,   /* Sommet inférieur gauche */
+    0% 25%    /* Sommet supérieur gauche */
+  );
+  display: block;
+  position: relative;
+  object-fit: cover;
+}
