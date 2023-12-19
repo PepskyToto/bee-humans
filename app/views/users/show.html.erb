@@ -59,11 +59,13 @@
       <p><%= request.description %></p>
       <h5 style="font-weight: bold;">Date :</h5>
       <p><%= request.date %></p>
+      <% if request.photo.attached? %>
+      <p><%= cl_image_tag request.photo.key, height: 300, width: 400, crop: :fill %></p>
+      <% end %>
 
       <h5 style="font-weight: bold;">Compétence :</h5>
 
       <p><%= cl_image_tag request.photo.key, height: 300, width: 400, crop: :fill %></p>
-
       <p><%= Skill.find(request.skill_id).category %></p>
       <% if current_user.id == @user.id %>
  <div class="text-center">
