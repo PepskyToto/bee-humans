@@ -55,15 +55,28 @@ class ChatroomsController < ApplicationController
     if params["valid"] == "true"
       @chatroom.status = 2
       @chatroom.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        accepted: true
+      )
     elsif params["valid"] == "false"
       @chatroom.status = 4
       @chatroom.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        destroy: true
+      )
     elsif params["done"] == "true"
       @chatroom.status = 3
       @chatroom.save
+      
     elsif params["done"] == "false"
       @chatroom.status = 5
       @chatroom.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        service_aborted: true
+      )
     end
     if @chatroom.save
       redirect_to request_chatroom_path(@chatroom.id), notice: "chatroom updated successfully."

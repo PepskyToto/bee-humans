@@ -33,11 +33,33 @@ export default class extends Controller {
   }
 
   #insertMessageAndScrollDown(data) {
-    const currentUserIsSender = this.currentUserIdValue === data.sender_id
-    const messageElement = this.#buildMessageElement(currentUserIsSender, data.message)
-    this.messagesTarget.insertAdjacentHTML("beforeend", messageElement)
-    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+    if (data.destroy) {
+      const form = document.querySelector('#new_message');
+      const refus = document.querySelector('#refus-message');
+      if (form) {
+        form.remove();
+        refus.insertAdjacentHTML("beforeend", "<p>La demande de service a été refusée</p>");
+      }
+    } else if (data.accepted) {
+      const refus = document.getElementById('refus-message');
+      if (refus) {
+        refus.innerHTML = "<p>La demande de service a été acceptée</p>";
+      }
+    } else if (data.service_aborted) {
+      const form = document.querySelector('#new_message');
+      const accepted = document.getElementById('accepted');
+      if (form) {
+        form.remove();
+        accepted.innerHTML = "<p>Vous n'avez pas honoré votre service</p>";
+      }
+    } else {
+      const currentUserIsSender = this.currentUserIdValue === data.sender_id;
+      const messageElement = this.#buildMessageElement(currentUserIsSender, data.message);
+      this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
+      this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+    }
   }
+  
 
   resetForm(event) {
     event.target.reset()

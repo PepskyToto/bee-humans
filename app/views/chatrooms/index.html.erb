@@ -10,6 +10,7 @@
           <p>Votre discussion avec <%= User.find(chatroom.needer_id).username %></p>
         </div>
       <% end %>
+      
     <% end %>
   <% end %>
   <% if Chatroom.find_by_needer_id(current_user.id) %>
