@@ -29,7 +29,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    
+
     <%= f.input :photo, as: :file, label: 'Photo de profil' %>
 
     <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :category do |b| %>
