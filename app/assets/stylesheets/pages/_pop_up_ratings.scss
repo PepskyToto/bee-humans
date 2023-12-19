@@ -1,0 +1,46 @@
+.popup-rating {
+  background-color: $beige;
+  padding: 10vh;
+  margin-top: 10vh;
+  width: 90vw;
+  border-radius: 8px;
+  // border: 5% solid rgb(250, 8, 8);
+  display: block;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0px 0px 10px 20px white;
+  h1{
+    font-size: 4vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-bottom: 2vh;
+  }
+  h4{
+    font-weight: bold;
+  }
+  text-align: center;
+}
+
+.user-pollen {
+  position: relative;
+  // top: -69px;
+  // right: -54px;
+  background-color: #42032C;
+  padding: 7%;
+  margin: 3% 40%;
+  // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  // z-index: 1;
+  width: 3vh;
+  height: 3vh;
+  font-size: 2em;
+  color: $light-beige;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.btn-helper {
+  width: 70%;
+}
