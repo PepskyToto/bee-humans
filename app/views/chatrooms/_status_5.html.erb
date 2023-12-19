@@ -8,7 +8,11 @@
     
   </div>
 
-
+<% if @chatroom.helper_id == current_user.id %>
+  <p>Vous n'avez pas honoré son service.</p>
+  <% else %>
   <p>Votre helper n'a pas honoré son service.</p>
+  <% end %>
+
   </div>
 </div>

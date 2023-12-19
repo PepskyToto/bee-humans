@@ -7,7 +7,7 @@
 </div>
     <div>
       <h1 class="humans">Humans</h1>
-    </div> 
+    </div>
     <div class="d-flex justify-content-end">
       <% if user_signed_in? %>
           <% if current_user && (Chatroom.where(needer_id: current_user.id).exists? || Chatroom.where(helper_id: current_user.id).exists?) %>
@@ -53,7 +53,11 @@
           </div>
           <div class="decollement">
           <a class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "placeholder.jpg", class: "avatar" %>
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic-navbar" %>
+      <% else %>
+      <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
+    <% end %>
           </a>
 
 
