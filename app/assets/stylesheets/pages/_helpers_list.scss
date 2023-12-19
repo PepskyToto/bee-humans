@@ -1,30 +1,35 @@
 
-.skillz {
-  background-color: $orange;
-  color: $light-beige;
-  padding: 2% 2%;
-  margin: 5px 5px;
-  border-radius: 30px;
-  text-align: center;
-  width: 20vw;
-}
 
 .skills-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  width: 40vw;
+  // margin-top: 3vh;
 }
 
-.one-card {
-  background-color: $beige;
-  // margin: 30vh;
-  border-radius: 1em;
-  margin: 3vh;
-  padding: 2vh;
-}
 
 .btn-margin {
-  align-items: end;
+  margin-left: 60%;
   margin-top: 2vh;
-  justify-content: flex-end;
-  display: flex;
+}
+
+
+// .user-skill-distance {
+//   float: right; /* Alignement à gauche */
+//   // width: 50%; /* Moitié de la largeur de la row (2 colonnes sur 12) */
+// }
+.skillz {
+  background-color: $orange;
+  color: $light-beige;
+  padding: 2% 2%;
+  margin: 2%;
+  border-radius: 30px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .skills-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
