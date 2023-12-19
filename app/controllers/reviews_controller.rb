@@ -20,6 +20,10 @@ class ReviewsController < ApplicationController
     if @review.save
       @chatroom.status = 6
       @chatroom.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        service_finished: true
+      )
       redirect_to request_chatroom_path(@chatroom, request_id: @chatroom.request.id), notice: 'Votre avis a été pris en compte!'
     else
       flash[:alert] = "Something went wrong."
