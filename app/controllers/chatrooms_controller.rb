@@ -10,6 +10,16 @@ class ChatroomsController < ApplicationController
     @user = current_user
     @review = Review.new
     @chatroom = Chatroom.find(params[:id])
+    #@messages_read = Message.where(chatroom_id: 114).where(user_id: @chatroom.helper_id)
+    if current_user.id == @chatroom.needer_id
+      @messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.helper_id)
+    else
+      @messages_read = Message.where(chatroom_id: @chatroom.id).where(user_id: @chatroom.needer_id)
+    end
+    @messages_read.each do |message|
+      message.read = true
+      message.save
+    end
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
   end
@@ -71,3 +81,11 @@ end
 #6: le user a été noté. 
 #7: le needer a accepté le service pour un autre helper. la chatroom 7 existe toujours et 
 # repasse en status 1 si l'autre helper n'a pas accepté le service (status 5)
+
+
+
+#ajouter une colonne lu default false a model message
+#Quand on rentre dans le show de chatroom , on récupère les messages envoyé par l'autre et on les passe en lu.
+#dans le html, si User.requests.chatroom.messages.where(user_id: != current_user.id).find(read: :false) != 0, alors count +=1 
+#dans le html, si count !=0, icone de messagerie devient rouge + rond avec @count.value dedans
+#User.last.requests.last.chatroom.messages.last

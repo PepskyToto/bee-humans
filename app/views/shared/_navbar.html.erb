@@ -7,11 +7,37 @@
 </div>
     <div>
       <h1 class="humans">Humans</h1>
-    </div>
+    </div> 
     <div class="d-flex justify-content-end">
       <% if user_signed_in? %>
+          <% if current_user && (Chatroom.where(needer_id: current_user.id).exists? || Chatroom.where(helper_id: current_user.id).exists?) %>
+          <% @not_read_counting = 0 %>
+          <% Chatroom.where(needer_id: current_user.id).each do |chatroom|%>
+          <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
+          <% @not_read_counting += 1 %>
+          <% end %>
+          <% end %>
+          <% Chatroom.where(helper_id: current_user.id).each do |chatroom|%>
+          <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
+          <% @not_read_counting += 1 %>
+          <% end %>
+
+          <% end %>
+          <% #if @not_read_counting > 0 %>
+            <p><%= @not_read_counting %> message non-lus</p>
+          <%# end %>
+          <% end %>
+        <% if @not_read_counting != 0 %>
+        <%= link_to chatrooms_path, class: "mail-icon" do %>
+          <%= image_tag "https://res.cloudinary.com/dmei6ediu/image/upload/v1702937667/messagerie_message_itukm3.png", class: "honeycomb-mail-unread" %>
+        <% end %>
+        <div class = "container-unread">
+          <p class = "message-non-lu"><%= @not_read_counting %></p>
+        </div>
+        <% else %>
         <%= link_to chatrooms_path, class: "mail-icon" do %>
           <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702395857/messagerie-vide_umvmjq.png", class: "honeycomb-mail" %>
+        <% end %>
         <% end %>
 
 

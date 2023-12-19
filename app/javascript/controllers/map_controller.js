@@ -18,18 +18,35 @@ export default class extends Controller {
     })
     this.#addMarkersToMap();
     this.#fitMapToMarkers();
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+      positionOptions: {
+      enableHighAccuracy: true
+      },
+      // When active the map will receive updates to the device's location as it changes.
+      trackUserLocation: true,
+      // Draw an arrow next to the location dot to indicate which direction the device is heading.
+      showUserHeading: true
+      })
+      );
   };
 
-  
+
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
+  
+      // Create a HTML element for your custom marker
       const customMarker = document.createElement("div")
-    customMarker.innerHTML = marker.marker_html
+      customMarker.innerHTML = marker.marker_html
+  
+      // Pass the element as an argument to the new marker
       new mapboxgl.Marker(customMarker)
-        .setLngLat([ marker.lng, marker.lat ])
-        .addTo(this.map);
-    });
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(popup)
+        .addTo(this.map)
+    })
   }
 
   #fitMapToMarkers() {
@@ -39,4 +56,3 @@ export default class extends Controller {
   }
 
 }
-

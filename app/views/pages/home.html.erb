@@ -1,4 +1,16 @@
-<div class = "maps-size"
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 text-center">
+      <% if current_user %>
+      <div class="user-count">
+        <%= pluralize(@nearby_users.size, "utilisateur") %> autour de vous
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id = "map" class = "maps-size"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
