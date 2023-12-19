@@ -1,7 +1,12 @@
 <%# Mettre la pdp de aurore en image de profil %>
-
 <div class="user-profile justify-content-center d-flex">
-  <h1><%= @user.username %></h1>
+<h1>
+<% if current_user.id == @user.id %>
+  <%= @user.username %>
+  <%= link_to edit_user_registration_path do %>
+    <i class="fa-solid fa-pencil"></i>
+  <% end %>
+<% end %></h1>
 
   <div class="profile-picture">
     <% if @user.profile_picture.present? %>
@@ -11,27 +16,20 @@
     <% end %>
   </div>
 
-  <div class="status">
-    <% if @user.online %>
-      <span class="status online">En ligne</span>
-    <% else %>
-      <span class="status offline">Hors ligne</span>
-    <% end %>
-  </div>
-
-  <div class="basic-info">
+  <div class="basic-info mt-5">
     <p><strong>Pollen :</strong> <%= @user.pollen %></p>
     <p><strong>Note Moyenne :</strong> <%= @user.average_rating || 'Non évalué' %></p>
     <p><strong>Email :</strong> <%= @user.email %></p>
     <p><strong>Adresse :</strong> <%= @user.address %></p>
     <p><strong>Description :</strong> <%= @user.description %></p>
   </div>
+<br>
 
   <%# <% if @user.latitude && @user.longitude %>
   <%# <div id="user-location-map"></div>
   <% end %>
-  <div class="skills-container">
     <h2>Compétences</h2>
+  <div class="skills-container">
       <div class="skills">
 
         <% @user.skills.each do |skill| %>
@@ -39,25 +37,33 @@
         <% end %>
       </div>
   </div>
-        <% if current_user.id == @user.id %>
-          <%= link_to "Modifier le profil ou les compétences", edit_user_registration_path, class: "btn btn-primary" %>
-        <% end %>
-</div>
+  <br>
+
+
+
+<div>
 <% if current_user.id == @user.id %>
-<h1>Mes requêtes en cours</h1>
-  <% else %>
-<h1>Requêtes en cours de <%= @user.username %></h1>
+  <h2 class="text-center">Mes requêtes en cours</h2>
+<% else %>
+  <h2 class="text-center">Requêtes en cours de <%= @user.username %></h2>
 <% end %>
+
+
 <% @user.requests.each do |request| %>
   <% if request.chatroom.present? && request.chatroom.status.present? %>
     <% if request.chatroom.status != 6 %>
+<h5 style="font-weight: bold;">Titre :</h5>
       <p><%= request.title %></p>
+      <h5 style="font-weight: bold;">Description :</h5>
       <p><%= request.description %></p>
+      <h5 style="font-weight: bold;">Date :</h5>
       <p><%= request.date %></p>
+      <h5 style="font-weight: bold;">Compétence :</h5>
       <p><%= Skill.find(request.skill_id).category %></p>
       <% if current_user.id == @user.id %>
-        <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
-      <% else %>
+ <div class="text-center">
+      <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
+      </div>      <% else %>
         <div class="request-info col-8">
           <% if @chatroom %>
             <%= link_to "Aller à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
@@ -70,6 +76,35 @@
     <% end %>
   <% end %>
 <% end %>
+<h2 class="text-center">Mes requêtes en attente de confirmation</h2>
+<% @user.requests.each do |request| %>
+  <% if request.chatroom.nil? %>
+  <h5 style="font-weight: bold;">Titre :</h5>
+    <p><%= request.title %></p>
+    <h5 style="font-weight: bold;">Description :</h5>
+    <p><%= request.description %></p>
+    <h5 style="font-weight: bold;">Date :</h5>
+    <p><%= request.date %></p>
+    <h5 style="font-weight: bold;">Compétence :</h5>
+    <p><%= Skill.find(request.skill_id).category %></p>
+    <% if current_user.id == @user.id %>
+    <div class="text-center">
+      <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
+      </div>
+    <% else %>
+      <div class="request-info col-8">
+        <% if @chatroom %>
+          <%= link_to "Aller à la chatroom", request_chatroom_path(request.id, @chatroom.id), class: "text-decoration-none text-dark"%>
+        <% else %>
+          <%= link_to "Aller à la chatroom", request_chatrooms_path(request, @chatroom), data: { turbo_method: :post }, class: "text-decoration-none text-dark" %>
+        <% end %>
+      </div>
+    <% end %>
+    <p></p>
+  <% end %>
+<% end %>
+
+
 
 <%# <div class="reviews">
 <%# <h2>Avis</h2>
