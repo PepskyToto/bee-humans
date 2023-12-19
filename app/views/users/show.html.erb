@@ -51,7 +51,9 @@
       <p><%= request.title %></p>
       <p><%= request.description %></p>
       <p><%= request.date %></p>
+      <% if request.photo.attached? %>
       <p><%= cl_image_tag request.photo.key, height: 300, width: 400, crop: :fill %></p>
+      <% end %>
       <p><%= Skill.find(request.skill_id).category %></p>
       <% if current_user.id == @user.id %>
         <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
