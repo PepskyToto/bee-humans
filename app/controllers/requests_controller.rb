@@ -2,6 +2,10 @@ class RequestsController < ApplicationController
   def index
     user_skills = current_user.skills
     @requests = Request.joins(:skill).where(skills: { id: user_skills }).distinct
+    if params["index_all_mine"]
+      @user = current_user
+      @requests = Request.where(user_id: current_user.id)
+    end
 
   end
 

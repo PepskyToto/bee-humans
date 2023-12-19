@@ -43,6 +43,7 @@
 
 
 <div>
+<%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true)%>
 <% if current_user.id == @user.id %>
   <h2 class="text-center">Mes requêtes en cours</h2>
 <% else %>
@@ -64,8 +65,9 @@
       <% end %>
 
       <h5 style="font-weight: bold;">Compétence :</h5>
-
+      <% if request.photo.attached? %>
       <p><%= cl_image_tag request.photo.key, height: 300, width: 400, crop: :fill %></p>
+      <% end %>
       <p><%= Skill.find(request.skill_id).category %></p>
       <% if current_user.id == @user.id %>
  <div class="text-center">
