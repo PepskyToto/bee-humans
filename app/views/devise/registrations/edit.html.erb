@@ -14,7 +14,8 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Actuellement en attente de confirmation pour : <%= resource.unconfirmed_email %></p>
           <% end %>
-
+          <%= f.input :description,
+                      input_html: { autocomplete: "description" } %>
           <%= f.input :password,
                       hint: "Laissez le champ vide si vous ne souhaitez pas le modifier",
                       required: false,
