@@ -11,7 +11,7 @@
 
   <div class="profile-picture">
     <% if @user.photo.attached? %>
-      <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic" %>    
+      <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic" %>
       <% else %>
       <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
     <% end %>
@@ -31,10 +31,10 @@
   <% end %>
     <h2>Compétences</h2>
   <div class="skills-container">
-      <div class="skills">
+      <div class="skillss">
 
         <% @user.skills.each do |skill| %>
-          <div class="skill"><%= skill.category %></div>
+          <div class="categories"><%= skill.category %></div>
         <% end %>
       </div>
   </div>
@@ -43,7 +43,13 @@
 
 
 <div>
-<%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true)%>
+
+<%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true), class:"btn btn-primary", style: "margin-bottom:2vh" %>
+
+
+
+
+<!--
 <% if current_user.id == @user.id %>
   <h2 class="text-center">Mes requêtes en cours</h2>
 <% else %>
