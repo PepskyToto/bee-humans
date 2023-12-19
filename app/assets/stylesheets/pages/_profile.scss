@@ -32,22 +32,26 @@
   }
 }
 
-.skills {
+
+.skillss {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 100vw;
+  width: 70vw;
+  // background-color: red;
+  margin-left: -15vw;
 }
 
-.skill {
+.categories {
   background-color: $orange;
   color: $light-beige;
   padding: 2% 2%;
   margin: 5px 5px;
   border-radius: 30px;
   text-align: center;
+  width: 30vw;
 }
 
-.skills-container {
+.skillz-container {
   h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
