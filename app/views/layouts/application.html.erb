@@ -2,7 +2,16 @@
 <html>
   <head>
     <title>BeeHumans</title>
+      <!-- favicon = petit logo qui apparait à gauche d'une fenetre -->
+    <%= favicon_link_tag %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+  <!-- Données Facebook Open Graph -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <!-- Image utilisé sur Facebook lors d'un partage de contenu-->
+    <meta property="og:image" content="<%= image_path('fb-1200x660.png') %>" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
