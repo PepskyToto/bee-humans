@@ -19,7 +19,6 @@ class ChatroomsController < ApplicationController
     @messages_read.each do |message|
       message.read = true
       message.save
-      raise
     end
     redirect_to :root unless current_user == @chatroom.helper || current_user == @chatroom.needer
     @message = Message.new
