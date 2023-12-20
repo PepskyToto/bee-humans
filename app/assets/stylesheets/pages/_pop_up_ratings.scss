@@ -22,25 +22,97 @@
   text-align: center;
 }
 
-.user-pollen {
+.user-popo {
   position: relative;
   // top: -69px;
   // right: -54px;
   background-color: #42032C;
-  padding: 7%;
-  margin: 3% 40%;
+  padding: 4%;
+  margin-left: 46%;
   // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   // z-index: 1;
   width: 3vh;
   height: 3vh;
-  font-size: 2em;
   color: $light-beige;
   text-align: center;
   display: flex;
   align-items: center;
+  p {
+  margin-top: 2.5vh;
+  font-size: 1em;
+  margin-left: -5px;
+  }
 }
+
 
 .btn-helper {
   width: 70%;
+}
+
+
+.popup-ratings  {
+  background-color: $light-beige;
+  padding: 3vh;
+  // width: 90vw;
+  border-radius: 8px;
+  // border: 5% solid rgb(250, 8, 8);
+  display: block;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0px 0px 10px 10px white;
+  margin-bottom: 2vh;
+
+  h4{
+    font-weight: bold;
+    text-align: center;
+    border: none;
+  }
+  // text-align: center;
+}
+
+// .centered-rating {
+//   display: flex;
+//   align-items: center;
+// }
+// .centered-rating:hover label {
+//   opacity: 1; /* L'opacité du label sera de 1 (entièrement visible) en survol */
+// }
+
+.modal-footer {
+  border: none;
+  // border-radius: 2vh;
+  // background-color: $aubergine;
+  // color: $light-beige;
+}
+
+// .avis-form {
+//   text-align: left;
+//   border: 1px solid $aubergine;
+//   box-shadow: 0px 0px 5px 5px #42032C;
+// }
+
+
+// .avis-form::before {
+//   text-align: left;
+//   border: 1px solid $aubergine;
+// }
+
+
+.avis-form input[type="text"] {
+  text-align: left; /* Alignement du texte dans l'input */
+  border: 1px solid $aubergine; /* Bordure de l'input */
+  box-shadow: 0px 0px 5px 5px #42032C; /* Ombre de l'input */
+  background-color: white; /* Couleur de fond de l'input */
+}
+
+
+.modal-header {
+  border-bottom: inherit;
+  text-align: center;
+}
+
+.form-control {
+  border: 1px solid $aubergine;
 }
