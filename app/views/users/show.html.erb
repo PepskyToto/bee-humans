@@ -31,6 +31,7 @@
   <div class="basic-info mt-5">
     <p><strong>Email :</strong> <%= @user.email %></p>
     <p><strong>Adresse :</strong> <%= @user.address %></p>
+    <p><strong>Distance :</strong> <%= @user.distance_to_user(current_user).try(:round, 2) %> km</p>
     <p><strong>Description :</strong> <%= @user.description %></p>
 
   </div>
