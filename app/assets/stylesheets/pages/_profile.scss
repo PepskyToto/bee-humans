@@ -58,3 +58,31 @@
     margin: 5vh;
 }
 }
+.haut-droite{
+  position: relative;
+  font-size: 30px;
+  bottom: 40%;
+  right: 10%;
+}
+.text-contenu{
+  color: white !important;
+  font-size: 0.3em !important;
+  bottom: 18px;
+  right: -10px;
+  position: relative;
+}
+
+.text-contenu-pollen{
+  color: white !important;
+  font-size: 0.3em !important;
+  bottom: 18px;
+  right: -12px;
+  position: relative;
+}
+
+.haut-gauche{
+  position: relative;
+  font-size: 30px;
+  bottom: 40%;
+  left: 10%;
+}

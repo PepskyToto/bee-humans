@@ -77,3 +77,32 @@
   width: 97%;
   margin : 0 auto; 
 }
+
+.bee-container{
+position: absolute; 
+z-index:0;
+top: 0; 
+left:0; 
+height: 100vh;
+width: 100vw;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.bee{
+  opacity: 30%;
+  background-image: url(https://res.cloudinary.com/dmei6ediu/image/upload/v1703067093/placeholder-light-beige_480_jrpqzk.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 104px;
+  height: 100px;
+}
+.messages-container{
+  height: 100vh;
+  overflow: hidden;
+}
+
+// div qui prends tout
+// height100vh width100vw display:flex position: absolute top:0 left:0
