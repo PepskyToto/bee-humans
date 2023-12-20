@@ -17,5 +17,11 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
-  
+  def distance_to_user(user)
+    return nil if user.latitude.nil? || user.longitude.nil? || self.latitude.nil? || self.longitude.nil?
+
+    current_user_coordinates = [user.latitude, user.longitude]
+    user_coordinates = [self.latitude, self.longitude]
+    Geocoder::Calculations.distance_between(current_user_coordinates, user_coordinates)
+  end
 end
