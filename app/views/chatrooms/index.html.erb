@@ -12,10 +12,11 @@
               <div class="d-flex justify-content-center col-2", style = "min-width: 110px;">
                 <% @user_message = User.find(chatroom.needer_id)%>
                 <% if @user_message.photo.attached? %>
-                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
+                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) != [] %>
+                  <% @messages_count = chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
-                    <div class="circle">
-                      <span class="number">1</span>
+                    <div id="circle">
+                      <span class="number"><%= @messages_count.length  %></span>
                     </div>
                   <% else %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
@@ -48,10 +49,11 @@
               <div class="d-flex justify-content-center col-2", style = "min-width: 110px; padding-left: 20px;">
                 <% @user_message = User.find(chatroom.helper_id)%>
                 <% if @user_message.photo.attached? %>
-                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
+                  <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) != [] %>
+                  <% @messages_count = chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
-                    <div class="circle">
-                      <span class="number">1</span>
+                    <div id="circle">
+                      <span class="number"><%= @messages_count.size%></span>
                     </div>
                   <% else %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
