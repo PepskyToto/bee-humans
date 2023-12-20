@@ -1,151 +1,71 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid d-flex">
-<div class="logo-container">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702389976/bee_humans_logo_hccovk.png", class: "logo png-color" %>
-  <% end %>
-</div>
+    <div class="logo-container">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702389976/bee_humans_logo_hccovk.png", class: "logo png-color" %>
+      <% end %>
+    </div>
     <div>
       <h1 class="humans">Humans</h1>
     </div>
-    <div class="d-flex justify-content-end">
+
+
+
+
+    <div class="d-flex">
       <% if user_signed_in? %>
-          <% if current_user && (Chatroom.where(needer_id: current_user.id).exists? || Chatroom.where(helper_id: current_user.id).exists?) %>
+        <% if current_user && (Chatroom.where(needer_id: current_user.id).exists? || Chatroom.where(helper_id: current_user.id).exists?) %>
           <% @not_read_counting = 0 %>
           <% Chatroom.where(needer_id: current_user.id).each do |chatroom|%>
-          <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
-          <% @not_read_counting += 1 %>
-          <% end %>
+            <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
+              <% @not_read_counting += 1 %>
+            <% end %>
           <% end %>
           <% Chatroom.where(helper_id: current_user.id).each do |chatroom|%>
-          <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
-          <% @not_read_counting += 1 %>
-          <% end %>
-
-          <% end %>
-          <% end %>
-        <% if @not_read_counting != 0 %>
+            <% if chatroom.messages.where.not(user_id: current_user.id).find_by(read: :false) %>
+              <% @not_read_counting += 1 %>
+            <% end %>
+        <% end %>
+      <% end %>
+      <% if @not_read_counting != 0 %>
         <%= link_to chatrooms_path, class: "mail-icon" do %>
           <%= image_tag "https://res.cloudinary.com/dmei6ediu/image/upload/v1702979972/messagerie-pleine_ghjmyk.png", class: "honeycomb-mail-unread" %>
         <% end %>
         <div class = "container-unread">
           <p class = "message-non-lu"><%= @not_read_counting %></p>
         </div>
-        <% else %>
+      <% else %>
         <%= link_to chatrooms_path, class: "mail-icon" do %>
           <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702395857/messagerie-vide_umvmjq.png", class: "honeycomb-mail" %>
         <% end %>
-        <% end %>
+      <% end %>
 
-
-      <div class="profile-info">
-          <div class="user-details">
-            <div class="user-points-container">
-            <span class="user-points"><%= current_user.pollen %></span>
+        <div class="profile-info">
+          
+          <div class="">
+            <a class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic-navbar" %>
+              <% else %>
+                <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
+              <% end %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <p><%= current_user.username %></p>
+              <%= link_to "Profil", user_path(current_user.id), class: "dropdown-item" %>
+              <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
-            <div class="ratings">
-              <span class="user-rating" id="star"><%= current_user.average_rating %></span>
-            </div>
-
-          </div>
-          <div class="decollement">
-          <a class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <% if current_user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic-navbar" %>
-      <% else %>
-      <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
-    <% end %>
-          </a>
-
-
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <p><%= current_user.username %></p>
-          <%= link_to "Profil", user_path(current_user.id), class: "dropdown-item" %>
-          <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
-          <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
           </div>
         </div>
-      </div>
-
-
-
       <% else %>
         <%= link_to "Login", new_user_session_path, class: "btn btn-login nav-link" %>
       <% end %>
     </div>
+
+
+
+
+
   </div>
 </nav>
-
-
-
-<!--
-
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://res.cloudinary.com/durjq68ed/image/upload/v1702389976/bee_humans_logo_hccovk.png" %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
-xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve"
-
-
-
-<%# <div class="avatar-container">
-   SVG pour la forme hexagonale
-  <svg version="1.1" id="Calque_1" >
-<path id="clipPath" class="st0" d="M50,3.3c-1.6,0-3.2,0.4-4.6,1.2L14.4,22.4c-2.9,1.7-4.6,4.7-4.6,8v35.7c0,3.3,1.8,6.4,4.6,8
-	l30.9,17.9c1.4,0.8,3,1.2,4.6,1.2s3.2-0.4,4.6-1.2l30.9-17.9c2.9-1.7,4.6-4.7,4.6-8V30.5c0-3.3-1.8-6.4-4.6-8L54.6,4.6
-	C53.2,3.7,51.6,3.3,50,3.3L50,3.3z"/>
-  </svg>
-
-  Image de profil
-  <%= image_tag "https://res-console.cloudinary.com/durjq68ed/thumbnails/v1/image/upload/v1701441863/c2FtcGxlcy9tYW4tcG9ydHJhaXQ=/template_primary/Y19maWxsLGFyXzE6MSxnX2F1dG8=", class: "profile-image", alt: "Profile Image" %>
-<%# </div> %>
-
-
-<%#
-<div class="hexagone">
-  <div class="hexagonemain">
-    <div class="hexagonemainbefore">
-      <%= image_tag "https://res-console.cloudinary.com/durjq68ed/thumbnails/v1/image/upload/v1701441863/c2FtcGxlcy9tYW4tcG9ydHJhaXQ=/template_primary/Y19maWxsLGFyXzE6MSxnX2F1dG8=", class: "profile-image", alt: "Profile Image" %>
-    <%# </div>
-  </div>
-</div> %>
-
--->
