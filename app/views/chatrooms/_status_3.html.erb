@@ -11,6 +11,8 @@
     <div id="refus-message">
   <!-- Ne pas supprimer cette div!! -->
   </div>
+  <div class="messages-container" data-chatroom-subscription-target="messages" style="max-height: 80vh; overflow-y: auto;">
+
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
@@ -23,6 +25,7 @@
       <%= render "messages/message", message: message %>
     <% end %>
     <% end %>
+  </div>
   </div>
 
   <%= simple_form_for [@chatroom, @message],
