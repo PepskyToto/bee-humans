@@ -16,7 +16,8 @@
                   <% @messages_count = chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
                     <div id="circle">
-                      <span class="number"><%= @messages_count.length  %></span>
+                      <i class="fa-solid fa-circle unread"></i>
+                      <%= @messages_count.size%>
                     </div>
                   <% else %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
@@ -52,9 +53,7 @@
                   <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) != [] %>
                   <% @messages_count = chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
-                    <div id="circle">
-                      <span class="number"><%= @messages_count.size%></span>
-                    </div>
+                      <i class="fa-solid fa-circle unread"></i>
                   <% else %>
                   <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
                 <% end %>
