@@ -2,27 +2,37 @@
 <%# Mettre la pdp de aurore en image de profil %>
 <div class="user-profile justify-content-center d-flex">
 <h1>
-<% if current_user.id == @user.id %>
   <%= @user.username %>
+<% if current_user.id == @user.id %>
   <%= link_to edit_user_registration_path do %>
     <i class="fa-solid fa-pencil"></i>
   <% end %>
 <% end %></h1>
+<div class="row">
+
 
   <div class="profile-picture">
+  <i class="fa-solid fa-cannabis haut-gauche"><p class = text-contenu-pollen><%= @user.pollen %></p></i>
     <% if @user.photo.attached? %>
+    <div class="profile-pic-wrapper">
       <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic" %>
+      </div>
       <% else %>
+      <div class="profile-pic-wrapper">
       <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
+      </div>
     <% end %>
+    <% if @user.average_rating%>
+      <i class="fa-solid fa-star haut-droite"><p class=" text-contenu"><%= @user.average_rating %></p></i>
+      <% end %>
+  </div>
   </div>
 
   <div class="basic-info mt-5">
-    <p><strong>Pollen :</strong> <%= @user.pollen %></p>
-    <p><strong>Note Moyenne :</strong> <%= @user.average_rating || 'Non évalué' %></p>
     <p><strong>Email :</strong> <%= @user.email %></p>
     <p><strong>Adresse :</strong> <%= @user.address %></p>
     <p><strong>Description :</strong> <%= @user.description %></p>
+
   </div>
 <br>
 

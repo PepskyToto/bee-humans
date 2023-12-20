@@ -4,7 +4,7 @@
   <% if @chatroom.messages[0].first_message == true %>
   <p class="messages"><%= @chatroom.messages[0].content %></p>
   <p>Le service a été refusé.</p>
-
+  <div class="messages-container" data-chatroom-subscription-target="messages" style="max-height: 80vh; overflow-y: auto;">
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">

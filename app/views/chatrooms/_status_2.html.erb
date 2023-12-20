@@ -12,8 +12,8 @@
 
   <h1>#<%= @chatroom.id %></h1>
   <% if @chatroom.messages[0].first_message == true %>
-  <p class="messages"><%= @chatroom.messages[0].content %></p>
   <p id= "accepted">Le service a été accepté.</p>
+    <div class="messages-container" data-chatroom-subscription-target="messages" style="max-height: 80vh; overflow-y: auto;">
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
@@ -27,6 +27,7 @@
     <% end %>
     <% end %>
   </div>
+  </div>
   <%= simple_form_for [@chatroom, @message],
     html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
     <%= f.input :content,
@@ -35,7 +36,7 @@
       wrapper_html: { class: "flex-grow-1" } %>
     <%= f.submit "Send", class: "btn btn-primary mb-3" %>
   <% end %>
-</div>
+
 </div>
 
 
