@@ -27,7 +27,7 @@ class RequestsController < ApplicationController
   end
 
   def update
-    
+
     if params["triggered_by_needer"] # si on arrive dans la méthode update par la liste de helper
       params["request"]["user_ids"].each do |user_id| # pour chaque user_id fait
         @count = 0 # système de verification , utilisé en fin de méthode, pour s'assurer que il y a eu autant de chatroom créer que d'utilisateur coché
@@ -47,7 +47,7 @@ class RequestsController < ApplicationController
         redirect_to chatrooms_path, notice: "Vous avez créé #{count} discussion"
       end
     end
-    
+
     if params["triggered_by_title"]
       @request = Request.find(params["id"])
       @request.title = params["request"]["title"]
