@@ -32,7 +32,19 @@
   }
 }
 
+.bold{
+  font-weight : bold;
+  text-align: center; 
+}
 
+.justify{
+  text-align: justify;
+}
+
+.last-item{
+  position: relative;
+  transform: translateX(17vw);
+}
 .skillss {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -67,7 +79,7 @@
 .text-contenu{
   color: white !important;
   font-size: 0.3em !important;
-  bottom: 19px;
+  bottom: 18px;
   right: -10px;
   position: relative;
 }
