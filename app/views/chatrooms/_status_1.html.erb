@@ -12,6 +12,7 @@
   <%= link_to "Accepter", chatroom_path(id: @chatroom, valid: true), data: { turbo_method: :patch } %>
   <%= link_to "Refuser", chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch, turbo_confirm: 'Voulez-vous vraiment refuser cette demande de service?' } %>
   <% end %>
+
   </div>
   <div id="refus-message">
   <!-- Ne pas supprimer cette div!! -->
