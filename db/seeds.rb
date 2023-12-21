@@ -27,6 +27,8 @@ user8 = User.create(username: "Jp", email: "Jp06435@gmail.com", password: "azert
 
 
 
+
+
 puts "Destroying Skills..."
 Skill.destroy_all
 puts "generating new Skill"
