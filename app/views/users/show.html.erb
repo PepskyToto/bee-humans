@@ -63,7 +63,9 @@
 
 
 <div>
+  <% if current_user == @user.id %>
 <div class="row">
 <%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true), class:"btn btn-primary d-flex justify-content-center align-items-center decale-toi" %>
 </div>
+<% end %>
 </div>
