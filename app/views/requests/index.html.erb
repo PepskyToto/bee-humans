@@ -1,4 +1,6 @@
 <!--- Ici, l'index sur lequelle on arrive quand on clique depuis le profil ( index de toutes mes requêtes) !-->
+
+
 <% if params["index_all_mine"] %>
 <% if current_user.id == @user.id %>
   <h2 class="text-center">Mes requêtes en cours</h2>
@@ -26,7 +28,7 @@
       <% if current_user.id == @user.id %>
  <div class="text-center">
       <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
-      </div>      
+      </div>
       <% else %>
         <div class="request-info col-8">
           <% if @chatroom %>
@@ -82,6 +84,7 @@
 </div> %>
 
 <% else %>
+
 <% @requests.reject { |request| request.distance_to_user(current_user).nan? }
             .sort_by { |request| request.distance_to_user(current_user) }
             .each do |request| %><% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
@@ -89,12 +92,12 @@
   <%# Recherche de la chatroom associée à la demande pour l'utilisateur actuel %>
   <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
 
-  
+
 
   <%# Vérification si l'utilisateur de la demande n'est pas l'utilisateur actuel %>
   <% if request.user_id != current_user.id %>
-    <div class="card mt-4 row mx-auto  col-12 col-md-6">
-      <div class="card-body d-flex align-items-center">
+    <div class="card mt-4 row mx-auto  col-10 col-md-6">
+      <div class="card-body d-flex align-items-center col-9">
         <div class="user-infos">
                 <p class="card-text"><strong> <%= link_to(request.user.username, user_path(request.user, triggered_by_index: :true), class: "text-decoration-none user-name") %></strong></p>
 
@@ -116,7 +119,7 @@
             <% if request.user.average_rating %>
                 <p class="average-rate"><strong><%= request.user.average_rating %>/5</strong></p>
             <% else %>
-              <p class="average-rate"> <strong>0/5</strong></p>
+              <p class="no-average-rate"> Cet utilisateur n'est pas encore noté.</p>
             <% end %>
           <% end %>
           </div>
@@ -155,4 +158,5 @@
     </div>
   <% end %>
 <% end %>
+<div class="mb-3"></div>
 <% end %>
