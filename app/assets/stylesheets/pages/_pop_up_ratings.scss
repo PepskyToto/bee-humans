@@ -22,29 +22,39 @@
   text-align: center;
 }
 
-.user-popo {
-  position: relative;
-  // top: -69px;
-  // right: -54px;
-  background-color: #42032C;
-  padding: 4%;
-  margin-left: 46%;
-  // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  // z-index: 1;
-  width: 3vh;
-  height: 3vh;
-  color: $light-beige;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  p {
-  margin-top: 2.5vh;
-  font-size: 1em;
-  margin-left: -5px;
-  }
-}
+// .user-popo {
 
+//   // position: relative;
+//   // // top: -69px;
+//   // // right: -54px;
+//   // background-color: #42032C;
+//   // padding: 4%;
+//   // margin-left: 46%;
+//   // // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+//   // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+//   // // z-index: 1;
+//   // width: 3vh;
+//   // height: 3vh;
+//   // color: $light-beige;
+//   text-align: center;
+//   // display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   p {
+//   // margin-top: 2.5vh;
+//   font-size: 3em;
+//   // margin-left: -5px;
+//   color: $orange;
+//   text-align: center;
+//   }
+// }
+
+.user-popo p {
+  position: relative;
+  font-size: 3em;
+  color: $orange;
+}
 
 .btn-helper {
   width: 70%;
