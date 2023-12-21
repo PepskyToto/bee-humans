@@ -7,6 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'open-uri'
 
 Geocoder.configure(timeout: 5)
 puts "Destroying ancient messages, chatrooms, users..."
@@ -14,14 +15,31 @@ Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
 puts "generating new Users"
-user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France", average_rating: 5, description: "Jean-François, 34 ans, passionné de photographie et de voyages. Aime explorer de nouvelles cultures.")
-user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "azerty", address: "11 impasse Jeanne Marlin, Nice, France", description: "Thomas, dit 'Toto', 28 ans, fan de sports extrêmes et de nature. Toujours prêt pour une aventure en montagne.")
-user3 = User.create(username: "Super-doudz", email: "doudz@gmail.com", password: "azerty", address: "123 avenue saint-lambert, Nice, France", description: "David, 31 ans, passionné de cuisine et de musique jazz. Adore expérimenter de nouvelles recettes.")
-user4 = User.create(username: "Aurore", email: "aurore@gmail.com", password: "azerty", address: "4 boulevard de la madeleine, Nice, France", description: "Aurore, 26 ans, amoureuse de la littérature et des chats. Passe son temps libre à écrire des poèmes.")
-user5 = User.create(username: "Dorian", email: "dorian@gmail.com", password: "azerty", address: "10 rue de la buffa, Nice, France", description: "Dorian, 23 ans, geek et passionné de nouvelles technologies. Toujours à jour sur les dernières innovations.")
-user6 = User.create(username: "Canberra", email: "canberra@gmail.com", password: "azerty", address: "2 rue du maréchal Joffre, Nice, France", description: "Camille, 29 ans, fan de randonnée et de photographie. Aime capturer la beauté de la nature.")
-user7 = User.create(username: "Mamandu06", email: "natalia@gmail.com", password: "azerty", address: "8 rue Gioffredo, Nice, France", description: "Natalia, 36 ans, mère de deux enfants et passionnée de jardinage. Trouve sa paix dans son jardin urbain.")
-user8 = User.create(username: "Jp", email: "Jp06435@gmail.com", password: "azerty", address: "25 avenue des fleurs, Nice, France", description: "Jean-Pierre, 42 ans, amateur de vin et de fromage. Organise souvent des dégustations pour ses amis.")
+user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "azerty", address: "17 avenue Henri Barbusse, Nice, France", latitude: 43.712303161621094, longitude: 7.256390571594238, average_rating: 5, description: "Jean-François, 34 ans, passionné de photographie et de voyages. Aime explorer de nouvelles cultures.")
+file1 = URI.open('app/assets/images/JEFF.jpg')
+user1.photo.attach(io: file1, filename: 'JEFF.jpg', content_type: 'image/jpg')
+user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "azerty", address: "21 avenue thiers, Nice, France", latitude: 43.70275115966797, longitude: 7.258845806121826, description: "Thomas, dit 'Toto', 28 ans, fan de sports extrêmes et de nature. Toujours prêt pour une aventure en montagne.")
+file2 = URI.open('app/assets/images/TOTO.jpg')
+user2.photo.attach(io: file2, filename: 'TOTO.jpg', content_type: 'image/jpg')
+user3 = User.create(username: "Super-doudz", email: "doudz@gmail.com", password: "azerty", address: "123 avenue saint-lambert, Nice, France", latitude: 43.715368, longitude: 7.2623578, description: "David, 31 ans, passionné de cuisine et de musique jazz. Adore expérimenter de nouvelles recettes.")
+file3 = URI.open('app/assets/images/DOUDZ.png')
+user3.photo.attach(io: file3, filename: 'DOUDZ.jpg', content_type: 'image/jpg')
+user4 = User.create(username: "Aurore", email: "aurore@gmail.com", password: "azerty", address: "4 avenue thiers, Nice, France", latitude: 43.70506215792902, longitude: 7.263993785473213, description: "Aurore, 26 ans, amoureuse de la littérature et des chats. Passe son temps libre à écrire des poèmes.")
+file4 = URI.open('app/assets/images/AURORE.jpg')
+user4.photo.attach(io: file4, filename: 'AURORE.jpg', content_type: 'image/jpg')
+user5 = User.create(username: "Dorian", email: "dorian@gmail.com", password: "azerty", address: "10 rue de la buffa, Nice, France", latitude: 43.6975767 , longitude: 7.2640023, description: "Dorian, 23 ans, geek et passionné de nouvelles technologies. Toujours à jour sur les dernières innovations.")
+file5 = URI.open('app/assets/images/portraitH1.jpg')
+user5.photo.attach(io: file5, filename: 'portraitH1.jpg', content_type: 'image/jpg')
+user6 = User.create(username: "Canberra", email: "canberra@gmail.com", password: "azerty", address: "2 rue du maréchal Joffre, Nice, France", latitude: 43.69915008544922, longitude: 7.266449451446533, description: "Camille, 29 ans, fan de randonnée et de photographie. Aime capturer la beauté de la nature.")
+file6 = URI.open('app/assets/images/portraitF1.jpg')
+user6.photo.attach(io: file6, filename: 'portraitF1.jpg', content_type: 'image/jpg')
+user7 = User.create(username: "Mamandu06", email: "natalia@gmail.com", password: "azerty", address: "8 rue Gioffredo, Nice, France", latitude: 43.702464, longitude: 7.2766116, description: "Natalia, 36 ans, mère de deux enfants et passionnée de jardinage. Trouve sa paix dans son jardin urbain.")
+file7 = URI.open('app/assets/images/portraitF2.jpg')
+user7.photo.attach(io: file7, filename: 'portraitF2.jpg', content_type: 'image/jpg')
+user8 = User.create(username: "Jp", email: "Jp06435@gmail.com", password: "azerty", address: "25 avenue des fleurs, Nice, France", latitude: 43.6978781, longitude: 7.2520686, description: "Jean-Pierre, 42 ans, amateur de vin et de fromage. Organise souvent des dégustations pour ses amis.")
+file8 = URI.open('app/assets/images/portraitH2.jpg')
+user8.photo.attach(io: file8, filename: 'portraitH2.jpg', content_type: 'image/jpg')
+
 
 
 

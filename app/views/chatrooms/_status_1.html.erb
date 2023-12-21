@@ -2,7 +2,9 @@
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
   <h1>#<%= @chatroom.id %></h1>
+
   <div class="messages-container" data-chatroom-subscription-target="messages" style="max-height: 80vh; overflow-y: auto;">
+  <div class="bandeau-service">
   <strong><%= @chatroom.messages[0].user.username %></strong>
   <% if @chatroom.messages[0].first_message == true %>
   <p class="messages"><%= @chatroom.messages[0].content %></p>
@@ -10,13 +12,15 @@
   <%= link_to "Accepter", chatroom_path(id: @chatroom, valid: true), data: { turbo_method: :patch } %>
   <%= link_to "Refuser", chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch, turbo_confirm: 'Voulez-vous vraiment refuser cette demande de service?' } %>
   <% end %>
+
+  </div>
   <div id="refus-message">
   <!-- Ne pas supprimer cette div!! -->
   </div>
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
-    
+
   </div>
   <% else %>
   <div class="messages" data-chatroom-subscription-target="messages">
@@ -47,4 +51,3 @@
     <%= f.submit "Send", class: "btn btn-primary mb-3" %>
   <% end %>
 </div>
-

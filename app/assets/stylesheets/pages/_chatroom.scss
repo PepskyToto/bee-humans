@@ -16,7 +16,7 @@
   -o-object-fit: cover;
   object-fit: cover;
   width: 80px;
-  height: 80px; 
+  height: 80px;
 }
 
 .chatroom-boxes {
@@ -75,14 +75,14 @@
 }
 .chatroom-container{
   width: 97%;
-  margin : 0 auto; 
+  margin : 0 auto;
 }
 
 .bee-container{
-position: absolute; 
+position: absolute;
 z-index:-1;
-top: 0; 
-left:0; 
+top: 0;
+left:0;
 height: 100vh;
 width: 100vw;
 display: flex;
@@ -106,3 +106,25 @@ text-align: center;
 
 // div qui prends tout
 // height100vh width100vw display:flex position: absolute top:0 left:0
+.bandeau-service {
+  // background-color:;
+  border-radius: 10px;
+  border: 2px solid $orange;
+  padding: 10px;
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.yep-no {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-yep {
+  font-size: 3em;
+  color: $orange !important;
+}
+
+.btn-no{
+  font-size: 3em;
+}
