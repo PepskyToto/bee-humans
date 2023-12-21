@@ -1,11 +1,19 @@
-    <div class="pop-up">
-      <div class="user-detail">
-        <div class="user-points-cont">
-          <span class="user-pollen"><p><%= user.pollen %></p></span>
-        </div>
-        <div class="rating">
-          <span class="user-note"><p><%= user.average_rating %></p></span>
-        </div>
+    <div class="row">
+    <% if user.average_rating%>
+    <div class="col-3">
+    <p class="text note"><%= user.average_rating %></p>
+    </div>
+    <div class="col-3">
+      <i class="fa-solid fa-star icon"></i>
+      </div>
+      <% end %>
+      <div class="col-3">
+      
+      <i class="fa-solid fa-cannabis icon"></i>
+      </div>
+      <div class="col-3">
+      <p class = "text pollen"><%= user.pollen %></p>
+      </div> 
       </div>
 <a href="<%= user_path(user, "triggered_by_index" => "pouet") %>" class="user-profile-link">
       <h2 class="user-name"><%= user.username %></h2>
