@@ -47,7 +47,7 @@
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic-navbar" %>
               <% else %>
-                <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="profile-pic" />
+                <img src="<%= asset_path('https://res.cloudinary.com/dmei6ediu/image/upload/v1703067093/placeholder-vert_480_nk3fub.png') %>" alt="Image de profil par défaut" class="profile-pic-navbar" />
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
