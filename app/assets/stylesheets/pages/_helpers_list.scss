@@ -9,15 +9,14 @@
 
 
 .btn-margin {
-  margin-left: 10vh;
   margin-top: 2vh;
 }
 
 
-// .user-skill-distance {
-//   float: right; /* Alignement à gauche */
-//   // width: 50%; /* Moitié de la largeur de la row (2 colonnes sur 12) */
-// }
+.user-skill-distance {
+  float: right; /* Alignement à gauche */
+  // width: 50%; /* Moitié de la largeur de la row (2 colonnes sur 12) */
+}
 .skillz {
   background-color: $orange;
   color: $light-beige;

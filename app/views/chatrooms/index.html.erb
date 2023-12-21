@@ -52,10 +52,10 @@
                 <% if @user_message.photo.attached? %>
                   <% if chatroom.messages.where.not(user_id: current_user.id).where(read: false) != [] %>
                   <% @messages_count = chatroom.messages.where.not(user_id: current_user.id).where(read: false) %>
-                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread" %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom-unread img-fluid" %>
                       <i class="fa-solid fa-circle unread"></i>
                   <% else %>
-                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom" %>
+                  <%= cl_image_tag @user_message.photo.key, class: "rounded-image-chatroom img-fluid" %>
                 <% end %>
                 <% end %>
               </div>

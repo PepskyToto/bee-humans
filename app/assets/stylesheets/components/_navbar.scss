@@ -85,12 +85,15 @@
   align-items: center;
   flex: 1;
   margin-right: 3vh;
-  transform: translate(10px, 10px);
+  position: absolute;
+  transform: translate(-66px, 10px);
 }
 
 .message-non-lu{
   color: white;
-  margin: 12px;
+  position: relative;
+  top: 15%;
+  left: 132%;
 }
 
 .container-unread{

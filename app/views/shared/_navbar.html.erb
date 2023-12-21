@@ -32,7 +32,6 @@
           <%= image_tag "https://res.cloudinary.com/dmei6ediu/image/upload/v1702979972/messagerie-pleine_ghjmyk.png", class: "honeycomb-mail-unread" %>
         <% end %>
         <div class = "container-unread">
-          <p class = "message-non-lu"><%= @not_read_counting %></p>
         </div>
       <% else %>
         <%= link_to chatrooms_path, class: "mail-icon" do %>
@@ -51,14 +50,14 @@
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to current_user.username, user_path(current_user.id), class: "dropdown-item" %>
+            <%= link_to 'Profil', user_path(current_user.id), class: "dropdown-item" %>
               <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </div>
         </div>
       <% else %>
-        <%= link_to "Login", new_user_session_path, class: "btn btn-login nav-link" %>
+        <%= link_to "Connexion", new_user_session_path, class: "btn btn-login nav-link" %>
       <% end %>
     </div>
 

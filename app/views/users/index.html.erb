@@ -52,7 +52,7 @@
                 </div>
               </div>
 
-              <div class="user-skill-distance">
+              <%# <div class="user-skill-distance"> %>
                 <div class="skills-container">
                   <% user.skills.each do |skill| %> <!-- Correction ici -->
                     <div class="category"><%= skill.category %></div>
@@ -69,13 +69,13 @@
             <% end %>
             </label>
           <% end %>
-          </div>
+          <%# </div> %>
           <%# </div> %>
         </div>
       </div>
             <% end %>
-      <div class="d-flex">
         <%= hidden_field_tag 'triggered_by_needer', 'true' %>
+      <div>
         <%= f.button :submit, 'Envoyez votre requête', class:"btn btn-primary btn-margin" %>
       </div>
       <% end %>
