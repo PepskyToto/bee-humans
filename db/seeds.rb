@@ -18,6 +18,8 @@ user1 = User.create(username: "jf_vt", email: "jfvernet@icloud.com", password: "
 user2 = User.create(username: "Super-Toto", email: "toto@gmail.com", password: "azerty", address: "11 impasse Jeanne Marlin, Nice, France")
 user3 = User.create(username: "Super-doudz", email: "doudz@gmail.com", password: "azerty", address: "123 avenue saint-lambert, Nice, France")
 
+
+
 puts "Destroying Skills..."
 Skill.destroy_all
 puts "generating new Skill"
