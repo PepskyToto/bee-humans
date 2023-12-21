@@ -1,5 +1,6 @@
 <div class="container chatroom" data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
   <h1>#<%= @chatroom.id %></h1>
   <strong><%= @chatroom.messages[0].user.username %></strong>
   <% if @chatroom.messages[0].first_message == true %>
@@ -18,12 +19,22 @@
   <div class="messages" data-chatroom-subscription-target="messages">
     
   </div>
-
   <% else %>
   <div class="messages" data-chatroom-subscription-target="messages">
+    <div class="d-flex flex-column">
     <% @chatroom.messages.each do |message| %>
+
+    <% if message.user_id == current_user.id %>
+    <div class="sender-style justify-content-end">
+    <%= render "messages/message", message: message %>
+    </div>
+    <% else %>
+    <div class="receiver-style justify-content-start">
       <%= render "messages/message", message: message %>
+    </div>
     <% end %>
+    <% end %>
+    </div>
     <% end %>
   </div>
   </div>
