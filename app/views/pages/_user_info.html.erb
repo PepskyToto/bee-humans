@@ -1,20 +1,26 @@
     <div class="row">
-    <% if user.average_rating%>
+    <% if user.average_rating == nil%>
+    <div class="col-12 d-flex justify-content-center">
+    <i class="fa-solid fa-cannabis icon"></i>
+    <p class = "text-map pollen-seul"><%= user.pollen %></p>
+    </div>
+    <% else %>
     <div class="col-3">
-    <p class="text note"><%= user.average_rating %></p>
+    <p class="text-map note"><%= user.average_rating %></p>
     </div>
     <div class="col-3">
       <i class="fa-solid fa-star icon"></i>
       </div>
-      <% end %>
+      
       <div class="col-3">
       
       <i class="fa-solid fa-cannabis icon"></i>
       </div>
       <div class="col-3">
-      <p class = "text pollen"><%= user.pollen %></p>
+      <p class = "text-map pollen"><%= user.pollen %></p>
       </div> 
       </div>
+      <% end %>
 <a href="<%= user_path(user, "triggered_by_index" => "pouet") %>" class="user-profile-link">
       <h2 class="user-name"><%= user.username %></h2>
   </a>

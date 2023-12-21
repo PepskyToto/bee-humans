@@ -37,7 +37,7 @@ class ChatroomsController < ApplicationController
     @chatroom.status = 1
     if @chatroom.save
       # Créez un message automatique après la création de la chatbox
-      @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre un service en #{Skill.find(@request.skill_id).category}}!")
+      @message = @chatroom.messages.build(first_message: true, user: current_user, content: "Je souhaite vous rendre un service en #{Skill.find(@request.skill_id).category}!")
       #first_message: true, si first_message : partiel _firstmessage
       if @message.save
         redirect_to request_chatroom_path(@request.id, @chatroom)

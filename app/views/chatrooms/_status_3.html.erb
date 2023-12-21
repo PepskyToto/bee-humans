@@ -1,13 +1,28 @@
 <div class="container chatroom" data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
   <h1>#<%= @chatroom.id %></h1>
+  <div class="bandeau-service">
   <strong><%= @chatroom.messages[0].user.username %></strong>
   <% if @chatroom.messages[0].first_message == true %>
   <p class="messages"><%= @chatroom.messages[0].content %></p>
   <% if current_user.id == @chatroom.helper_id %>
-  <%= link_to "Accepter", chatroom_path(id: @chatroom, valid: true), data: { turbo_method: :patch } %>
-  <%= link_to "Refuser", chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch, turbo_confirm: 'Voulez-vous vraiment refuser cette demande de service?' } %>
+  <div class="yep-no">
+  <div class="btn-yep">
+  <%= link_to chatroom_path(id: @chatroom, valid: true), data: { turbo_method: :patch } do %>
+    <i class="fa-solid fa-check"></i>
   <% end %>
+  </div>
+  <div class="btn-no">
+  <%= link_to chatroom_path(id: @chatroom, valid: false), data: { turbo_method: :patch, turbo_confirm: 'Voulez-vous vraiment refuser cette demande de service?' } do %>
+    <i class="fa-solid fa-xmark"></i>
+  <% end %>
+  <% end %>
+  </div>
+  </div>
+  </div>
+
+
     <div id="refus-message">
   <!-- Ne pas supprimer cette div!! -->
   </div>
@@ -16,14 +31,24 @@
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
-    
-  </div>
 
+  </div>
   <% else %>
   <div class="messages" data-chatroom-subscription-target="messages">
+    <div class="d-flex flex-column">
     <% @chatroom.messages.each do |message| %>
+
+    <% if message.user_id == current_user.id %>
+    <div class="sender-style justify-content-end">
+    <%= render "messages/message", message: message %>
+    </div>
+    <% else %>
+    <div class="receiver-style justify-content-start">
       <%= render "messages/message", message: message %>
+    </div>
     <% end %>
+    <% end %>
+    </div>
     <% end %>
   </div>
   </div>

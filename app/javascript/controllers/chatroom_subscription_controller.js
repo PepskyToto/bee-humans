@@ -19,6 +19,7 @@ export default class extends Controller {
   }
 
   #userStyleClass(currentUserIsSender) {
+    console.log(currentUserIsSender)
     return currentUserIsSender ? "sender-style" : "receiver-style"
   }
 
@@ -55,6 +56,7 @@ export default class extends Controller {
     } else {
       const currentUserIsSender = this.currentUserIdValue === data.sender_id;
       const messageElement = this.#buildMessageElement(currentUserIsSender, data.message);
+
       this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
       this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
     }

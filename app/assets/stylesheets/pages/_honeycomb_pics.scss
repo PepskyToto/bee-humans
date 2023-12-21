@@ -131,11 +131,18 @@
   font-size: 40px; 
 }
 
-.text{
-  color: white
 
+
+.text-map{
+  color: white
 }
 
+.pollen-seul{
+  position: relative;
+  top: 11px;
+  font-size: larger;
+  right: 24px;
+}
 .note{
   position: relative;
   top: 12px;
@@ -144,7 +151,7 @@
 }
 .pollen{
   position: relative;
-  top: 13px;
+  top: 30%;
   font-size: larger;
-  right: 50px;
+  right: 165%;
 }
