@@ -1,0 +1,25 @@
+
+.card-request {
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  background-color: $beige;
+  width: 55vw;
+  border-radius: 8px;
+  border: none;
+  padding: 5%;
+}
+
+
+.btn-outline {
+  border-radius: 5px;
+  background-color: transparent;
+  // opacity: 0.5;
+  border: 2px solid $orange;
+  color: $orange;
+  // display:flex;
+  // justify-content: end;
+  margin-left: 0%;
+}
+
+.text {
+  color: $aubergine !important;
+}

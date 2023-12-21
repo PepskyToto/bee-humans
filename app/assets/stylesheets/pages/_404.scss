@@ -1,0 +1,17 @@
+.dialog {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-content {
+  max-width: 600px; /* Ajustez selon la taille souhaitée */
+}
+
+.centered-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px; /* Espace entre l'image et le bouton */
+}
