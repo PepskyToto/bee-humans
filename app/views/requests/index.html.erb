@@ -1,4 +1,6 @@
 <!--- Ici, l'index sur lequelle on arrive quand on clique depuis le profil ( index de toutes mes requêtes) !-->
+
+
 <% if params["index_all_mine"] %>
 <% if current_user.id == @user.id %>
   <h2 class="text-center">Mes requêtes en cours</h2>
@@ -26,7 +28,7 @@
       <% if current_user.id == @user.id %>
  <div class="text-center">
       <%= link_to "Modifier ma requête", edit_request_path(request, triggered_by_profile: true) %>
-      </div>      
+      </div>
       <% else %>
         <div class="request-info col-8">
           <% if @chatroom %>
@@ -89,7 +91,7 @@
   <%# Recherche de la chatroom associée à la demande pour l'utilisateur actuel %>
   <% @chatroom = Chatroom.where(request_id: request.id).find_by_helper_id(current_user.id) %>
 
-  
+
 
   <%# Vérification si l'utilisateur de la demande n'est pas l'utilisateur actuel %>
   <% if request.user_id != current_user.id %>
