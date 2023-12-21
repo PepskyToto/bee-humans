@@ -72,29 +72,40 @@
 }
 .haut-droite{
   position: relative;
-  font-size: 30px;
+  font-size: 40px;
   bottom: 40%;
   right: 10%;
 }
 .text-contenu{
   color: white !important;
   font-size: 0.3em !important;
-  bottom: 18px;
-  right: -10px;
+  bottom: 25px;
+  right: -13px;
   position: relative;
 }
 
 .text-contenu-pollen{
   color: white !important;
   font-size: 0.3em !important;
-  bottom: 18px;
-  right: -12px;
+  bottom: 24px;
+  right: -17px;
   position: relative;
 }
 
 .haut-gauche{
   position: relative;
-  font-size: 30px;
+  font-size: 40px;
   bottom: 40%;
   left: 10%;
+}
+
+.crayon{
+  font-size: 20px;
+  position: relative;
+  top: 5%;
+  left: 5%;
+}
+
+.decale-toi{
+  transform: translate(0px, 10px);
 }
