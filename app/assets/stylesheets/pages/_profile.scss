@@ -32,7 +32,19 @@
   }
 }
 
+.bold{
+  font-weight : bold;
+  text-align: center; 
+}
 
+.justify{
+  text-align: justify;
+}
+
+.last-item{
+  position: relative;
+  transform: translateX(17vw);
+}
 .skillss {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
