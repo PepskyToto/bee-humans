@@ -32,7 +32,6 @@
           <%= image_tag "https://res.cloudinary.com/dmei6ediu/image/upload/v1702979972/messagerie-pleine_ghjmyk.png", class: "honeycomb-mail-unread" %>
         <% end %>
         <div class = "container-unread">
-          <p class = "message-non-lu"><%= @not_read_counting %></p>
         </div>
       <% else %>
         <%= link_to chatrooms_path, class: "mail-icon" do %>
