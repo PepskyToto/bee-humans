@@ -1,5 +1,6 @@
 
 <%# Mettre la pdp de aurore en image de profil %>
+<div class="col-11 mx-auto my-auto">
 <div class="user-profile justify-content-center d-flex">
 <h1>
   <%= @user.username %>
@@ -28,10 +29,11 @@
   </div>
   </div>
 
-  <div class="basic-info mt-5">
-    <p><strong>Email :</strong> <%= @user.email %></p>
-    <p><strong>Adresse :</strong> <%= @user.address %></p>
-    <p><strong>Description :</strong> <%= @user.description %></p>
+  <div class="mt-5">
+    <h5 class = "bold">Description</h5>
+    <div class="col-10 mx-auto my-auto">
+    <p class = "justify"><%= @user.description %></p>
+    </div>
 
   </div>
 <br>
@@ -43,9 +45,18 @@
   <div class="skills-container">
       <div class="skillss">
 
-        <% @user.skills.each do |skill| %>
+        <% @user.skills.each_with_index do |skill,index| %>
+          <% if @user.skills.length.odd? %>
+            <% if (index+1) == @user.skills.length%>
+            <div class="categories last-item"><%= skill.category %></div>
+            <% else %>
+            <div class="categories"><%= skill.category %></div>
+            <% end %>
+          <% else %>
           <div class="categories"><%= skill.category %></div>
         <% end %>
+        <% end %>
+        
       </div>
   </div>
   <br>
@@ -54,8 +65,8 @@
 
 <div>
 
-<%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true), class:"btn btn-primary", style: "margin-bottom:2vh" %>
-
+<%= link_to "Voir mes requêtes", requests_path( id: @user.id, index_all_mine: true), class:"btn btn-primary d-flex justify-content-center align-items-center", style: "margin-bottom:2vh" %>
+</div>
 
 
 

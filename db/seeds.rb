@@ -25,7 +25,7 @@ skills = categories.map { |category| Skill.create(category: category) }
 
 puts "Assigning skills to users..."
 user1.skills << skills[0] << skills[1] << skills[2]
-user2.skills << skills[3] << skills[4] << skills[5] << skills[2]
+user2.skills << skills[3] << skills[4] << skills[5] << skills[2] << skills[2]
 user3.skills << skills[3] << skills[4] << skills[5] << skills[2]
 
 puts "creating request..."
