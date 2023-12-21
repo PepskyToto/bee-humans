@@ -4,10 +4,24 @@
   <div class="bandeau">
     <div id="bye">
     <% if current_user.id == @chatroom.needer_id %>
+    <div class="bandeau-service">
     <h5>Le sevice a-t-il été effectué ?</h5>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Oui</button>
-    <%= link_to "Non", chatroom_path(id: @chatroom, done: false), data: { turbo_method: :patch, turbo_confirm: "Comfirmez-vous que le service n'a pas été effectué?" }, class: "btn btn-primary" %>
+        <%# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Oui</button> %>
+        <div class="yep-no">
+        <div class="btn-yep">
+        <%= link_to "#", data: { toggle: "modal", target: "#exampleModalCenter" } do %>
+        <i class="fa-solid fa-check"></i>
+        <% end %>
+        </div>
+        <div class="btn-no">
+    <%= link_to chatroom_path(id: @chatroom, done: false), data: { turbo_method: :patch, turbo_confirm: "Comfirmez-vous que le service n'a pas été effectué?" } do %>
+    <i class="fa-solid fa-xmark"></i>
     <% end %>
+    </div>
+    </div>
+    </div>
+    <% end %>
+
 
 
 
@@ -18,7 +32,7 @@
   <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
-    
+
   </div>
   <% else %>
   <div class="messages" data-chatroom-subscription-target="messages">

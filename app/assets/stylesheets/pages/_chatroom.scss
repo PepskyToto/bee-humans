@@ -111,4 +111,20 @@ text-align: center;
   border-radius: 10px;
   border: 2px solid $orange;
   padding: 10px;
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.yep-no {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-yep {
+  font-size: 3em;
+  color: $orange !important;
+}
+
+.btn-no{
+  font-size: 3em;
 }
