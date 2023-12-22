@@ -28,11 +28,11 @@
                 </div>
 
                 <div class="profile-picture">
-                  <% if user.present? && user.profile_picture.present? %>
-                    <img src="<%= asset_path(user.profile_picture) %>" alt="Photo de profil de <%= user.username %>" class="mini-profile-pic" />
-                  <% else %>
-                    <img src="<%= asset_path('https://res.cloudinary.com/durjq68ed/image/upload/v1701441872/cld-sample.jpg') %>" alt="Image de profil par défaut" class="mini-profile-pic" />
-                  <% end %>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, height: 300, width: 400, crop: :fill, class: "profile-pic-navbar" %>
+                <% else %>
+                  <img src="<%= asset_path('https://res.cloudinary.com/dmei6ediu/image/upload/v1703067093/placeholder-vert_480_nk3fub.png') %>" alt="Image de profil par défaut" class="profile-pic-navbar" />
+                <% end %>
                 </div>
 
                 <div class="user-rating me-3">
