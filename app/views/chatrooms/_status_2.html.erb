@@ -1,6 +1,18 @@
 <div class="container chatroom" data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+  <button onclick="window.location.reload();" class="wide-button">Rafraîchir</button>
+
+<style>
+  .wide-button {
+    width: 100%; /* ou toute autre largeur que vous préférez */
+    height: 20px;
+    color: #F1EFDC;
+    background-color: #F1EFDC;
+    border: 1px solid #F1EFDC;
+  }
+</style>
+
   <div class="bandeau">
     <div id="bye">
     <% if current_user.id == @chatroom.needer_id %>

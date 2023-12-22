@@ -5,7 +5,7 @@
   -o-object-fit: cover;
   object-fit: cover;
   width: 80px;
-  height: 80px; 
+  height: 80px;
   position: absolute
 }
 
@@ -113,6 +113,8 @@ text-align: center;
   padding: 10px;
   margin-top: 3vh;
   text-align: center;
+  margin-bottom: 2vh;
+
 }
 
 .yep-no {
@@ -127,4 +129,8 @@ text-align: center;
 
 .btn-no{
   font-size: 3em;
+}
+
+.invisible {
+  width: 10px;
 }
