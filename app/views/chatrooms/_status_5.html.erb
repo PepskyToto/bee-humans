@@ -1,13 +1,13 @@
 <div class="container chatroom" data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-  <h1>#<%= @chatroom.id %></h1>
+  <%# <h1>#<%= @chatroom.id</h1> %>
     <div class="messages-container" data-chatroom-subscription-target="messages" style="max-height: 80vh; overflow-y: auto;">
 
     <%= render "chatrooms"%>
 
   <div class="messages" data-chatroom-subscription-target="messages">
-    
+
   </div>
   <div class="div">
 
