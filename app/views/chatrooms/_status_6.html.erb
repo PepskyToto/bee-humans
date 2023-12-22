@@ -27,8 +27,10 @@
   <%= link_to "Retourner à la page d'acceuil" , root_path %>
 
   <% else %>
-  <h1><%= User.find(@chatroom.needer_id).username %> vous a noté!</h1>
-  <h3>Vous avez reçu le pollen de <%= User.find(@chatroom.needer_id).username %></h3>
+  <!--<h1><%= User.find(@chatroom.needer_id).username %> vous a noté!</h1>
+  <h3>Vous avez reçu le pollen de <%= User.find(@chatroom.needer_id).username %></h3> -->
+  <h1>Merci d'avoir noté <%= User.find(@chatroom.helper_id).username %>!</h1>
+  <h3>Votre pollen a été transféré à <%= User.find(@chatroom.helper_id).username %></h3>
   <h4 >IL VOUS RESTE </h4>
     <span class="user-popo"><p><%= current_user.pollen %></p></span>
   <h4>POLLEN !</h4>
